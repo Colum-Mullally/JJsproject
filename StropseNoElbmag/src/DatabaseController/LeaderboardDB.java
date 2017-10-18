@@ -11,4 +11,9 @@ package DatabaseController;
  */
 public class LeaderboardDB {
     
+    public String[][] getLeaderBoard()
+    {
+        String[][] out = DBParser.getLeaderBoard();
+        return out;
+    }
 }
