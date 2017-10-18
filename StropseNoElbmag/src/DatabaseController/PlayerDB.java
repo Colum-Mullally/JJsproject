@@ -11,8 +11,21 @@ package DatabaseController;
  */
 public class PlayerDB {
 
-    public static Player getPlayer(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Player getPlayer(int id)
+    {
+        Player out = DBParser.getPlayer(id);
+        return out;
+    }
+    
+    public String[][] showAllPlayers()
+    {
+        String[][] out = DBParser.getAllPlayers();
+        return out;
+    }
+    
+    public void update(int id, String name, double odds)
+    {
+        DBParser.update(id,name,odds);
     }
 
    
