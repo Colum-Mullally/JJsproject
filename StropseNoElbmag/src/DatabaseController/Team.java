@@ -11,22 +11,8 @@ package DatabaseController;
  */
 public class Team {
 
-    int id;
-    double odds;
-    String tName;
-    Player[] players;
-
-    public Team(int id, double odds, String tName, Player[] players)
-    {
-        this.id = id;
-        this.odds = odds;
-        this.tName = tName;
-        this.players = players;
-    }
-
-    public double getTeamOdds()
-    {
-        return odds;
+    public double getTeamOdds() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     public Player[] getTeamPlayers()
