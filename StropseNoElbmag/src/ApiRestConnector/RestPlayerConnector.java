@@ -14,11 +14,12 @@ public class RestPlayerConnector {
     private URL pandascoreURL; 
     private String token="YOeSj7aUHe0yCft4uVWh6NiH1-RthxqvKu9RC6zT1PXlYnAUo50";
     private String jsonString1;
-    RestPlayerConnector() throws MalformedURLException{
+    RestPlayerConnector(){
        
   
-           pandascoreURL= new URL("https://api.pandascore.co/lol/players.json?page1&token="+token+"&sort=id");
+           
            try {
+               pandascoreURL= new URL("https://api.pandascore.co/lol/players.json?page1&token="+token+"&sort=id");
                HttpsURLConnection conn = (HttpsURLConnection) pandascoreURL.openConnection();
                jsonString1 = printContent(conn);
              
