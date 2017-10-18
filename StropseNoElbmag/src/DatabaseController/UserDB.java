@@ -11,4 +11,11 @@ package DatabaseController;
  */
 public class UserDB {
     
+    DBParser parser;
+    
+    public boolean add(String userName, String password, String email)
+    {
+        boolean result = parser.addUser(userName, password, email);
+        return result;
+    }
 }
