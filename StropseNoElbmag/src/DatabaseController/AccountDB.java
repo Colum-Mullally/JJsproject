@@ -11,4 +11,14 @@ package DatabaseController;
  */
 public class AccountDB {
     
+    public boolean check(String username, String password)
+    {
+        boolean out = DBParser.check(username, password);
+        return out;
+    }
+    
+    public void getAccount(String username)
+    {
+        DBParser.getAccount(username);
+    }
 }
