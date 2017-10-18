@@ -29,4 +29,8 @@ public class Team {
         return odds;
     }
     
+    public Player[] getTeamPlayers()
+    {
+        return players;
+    }
 }
