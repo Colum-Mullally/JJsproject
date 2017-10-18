@@ -10,21 +10,9 @@ package DatabaseController;
  * @author Colum
  */
 public class TeamDB {
-    
-    public Team getTeam(int id)
-    {
-        Team out = DBParser.getTeam(id);
-        return out;
+
+    public Team getTeam(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public String[][] showAllTeams()
-    {
-        String[][] out = DBParser.getAllTeams();
-        return out;
-    }
-    
-    public void update(int id, String name, Player[] players, double odds)
-    {
-        DBParser.update(id,name,players,odds);
-    }
 }
