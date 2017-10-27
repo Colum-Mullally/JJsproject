@@ -4,6 +4,11 @@
  * and open the template in the editor.
  */
 package MachineLearningOpinion;
+
+/**
+ *
+ * @author Colum
+ */
 public class OpinionCalculator {
     
 }
