@@ -5,18 +5,22 @@
  */
 package SupportController;
 
+import AccountManager.Account;
+
 /**
  *
  * @author Colum
  */
 public class House {
 
-    void TransferXpHouse() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   private double amount,odds;
+   private Account user;
+ void TransferXpHouse(Account user,double amount, double odds) {
+        this.amount=amount;
+        this.odds=odds;
+        this.user=user;
     }
-
-    void TransferXpHouse(double amount, double odds) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    void Pay(){
+        user.add(amount*odds);
     }
-    
 }

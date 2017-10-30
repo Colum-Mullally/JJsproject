@@ -12,6 +12,7 @@ package AccountManager;
 public interface Account {
 
     double getMaxSupport();
-   void pay(double amount);
    double balance();
+    public void deductXP(double amount);
+    public void add(double amount);
 }

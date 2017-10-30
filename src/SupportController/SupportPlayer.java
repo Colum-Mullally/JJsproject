@@ -5,6 +5,7 @@
  */
 package SupportController;
 import AccountManager.*;
+import DatabaseController.AccountDB;
 import DatabaseController.Player;
 import DatabaseController.PlayerDB;
 /**
@@ -14,19 +15,19 @@ import DatabaseController.PlayerDB;
 public class SupportPlayer {
     private int id;
     private double amount;
-    private BronzeUser bUser;
+    private Account user;
     private PlayerDB database;
     Player player;
-    SupportPlayer(int id, double amount) {
+    SupportPlayer(int id,int Pid ,double amount) {
         this.id=id;
         this.amount=amount;
+        AccountDB holder=new AccountDB();
+        user=holder.getAccount(id);
         database= new PlayerDB();
-        player=database.getPlayer(id);
+        player=database.getPlayer(Pid);
         double odds=player.getPlayerOdds();
-        bUser.deductXP(amount);
+        user.deductXP(amount);
         House temp= new House();
-        temp.TransferXpHouse(amount,odds);
+        temp.TransferXpHouse(user,amount,odds);
     }
-   
-    
 }

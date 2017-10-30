@@ -10,20 +10,21 @@ package SupportController;
  * @author Colum
  */
 public class Support {
-    private int id;
+    private int id,Pid;
     private double amount;
     Support(int id,double amount){
         this.id=id;
         this.amount=amount;
+        
     }
     void Selection(int choice){
         if (choice==1)
         {
-            SupportPlayer temp=new SupportPlayer(id,amount);
+            SupportPlayer temp=new SupportPlayer(id,Pid,amount);
         }
         else if(choice==2)
         {
-            SupportTeam temp=new SupportTeam(id,amount);
+            SupportTeam temp=new SupportTeam(id,Pid,amount);
         }
     } 
 }

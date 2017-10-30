@@ -25,12 +25,13 @@ public class BronzeUser implements Account{
     }
 
     public void deductXP(double amount) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        balance-=amount;
     }
 
+
     @Override
-    public void pay(double amount) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void add(double amount) {
+        balance+=amount;
     }
     
     

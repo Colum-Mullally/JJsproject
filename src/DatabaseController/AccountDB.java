@@ -5,6 +5,8 @@
  */
 package DatabaseController;
 
+import AccountManager.Account;
+
 /**
  *
  * @author Colum
@@ -20,5 +22,17 @@ public class AccountDB {
     public void getAccount(String username)
     {
         DBParser.getAccount(username);
+    }
+
+    public Account getAccount(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Account getAccount(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Account getAccount(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

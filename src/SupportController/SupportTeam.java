@@ -5,7 +5,8 @@
  */
 package SupportController;
 
-import AccountManager.BronzeUser;
+import AccountManager.Account;
+import DatabaseController.AccountDB;
 import DatabaseController.Team;
 import DatabaseController.TeamDB;
 
@@ -17,18 +18,20 @@ public class SupportTeam {
 
     private int id;
     private double amount;
-    private BronzeUser bUser;
+    private Account User;
     private TeamDB database;
     Team team;
-    SupportTeam(int id, double amount) {
+    SupportTeam(int id,int pid, double amount) {
         this.id=id;
         this.amount=amount;
         database= new TeamDB();
         team=database.getTeam(id); 
         double odds=team.getTeamOdds();
-        bUser.deductXP(amount);
+        AccountDB holder=new AccountDB();
+        User=holder.getAccount(id);
+        User.deductXP(amount);
         House temp= new House();
-        temp.TransferXpHouse(amount,odds);
+        temp.TransferXpHouse(User,amount,odds);
         
     }
     

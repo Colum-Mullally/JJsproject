@@ -21,14 +21,20 @@ public class SilverUser extends AccountDecorator{
         return maxSupport;
     }
 
+
     @Override
-    public void pay(double amount) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void deductXP(double amount) {
+       balance-=amount;
+    }
+
+    @Override
+    public void add(double amount) {
+         balance+=amount;
     }
 
     @Override
     public double balance() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return balance;
     }
     
     
