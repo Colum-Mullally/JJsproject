@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package ApiRestConnector;
+import JsonResultParser.ResultParser;
 import java.net.*;
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
@@ -38,40 +39,8 @@ public class RestTeamConnector {
             nameString = nameString.replaceAll("\"\\}","");
             nameString = nameString.replaceAll("Royal Never Give Up\".*","Royal Never Give Up");
             teamNames = nameString.split(",");
-            scores = new int[teamIDs.length];
-            for(int h=0;h<teamIDs.length;h++)
-            {
-                pandaTeamStats = new URL(pandaURLBase,"teams/" + teamIDs[h] + "/matches?token=" + token + "&sort=id");
-                conn = (HttpsURLConnection)pandaTeamStats.openConnection();
-                
-                jsonString2 = jsonString2.replaceAll("\"id\":.*?\"results\":", "\"results\":");
-                jsonString2 = jsonString2.replaceAll(",\"serie_id\":.*?\"serie\":", "\\},");
-                jsonString2 = jsonString2.replaceAll(",\\{\"id\":.*\\]\\}", "");
-                jsonString2 = jsonString2.replaceAll(",\\{\"team_id\":.*?\\}", "");
-                jsonString2 = jsonString2.replaceAll("\\{\"results\":\\[\\{\"team_id\":", "");
-                jsonString2 = jsonString2.replaceAll(",\"score\":1\\}\\]\\}", "");
-                jsonString2 = jsonString2.substring(1,jsonString2.length()-2);
-                //jsonString2 = jsonString2.replaceAll("\\]\\},\\{", "\\]\\},\n\\{");
-                
-                String[]temp = jsonString2.split(",");
-                for(int i=0;i<temp.length;i++)
-                {
-                    found = false;
-                    for(int j=0;j<teamIDs.length&&!found;j++)
-                    {
-                        if(teamIDs[j].equals(temp[i]))
-                        {
-                            scores[j]++;
-                            found = true;
-                        }
-                    }
-                }
-            }
-            output = "Number of victories for all teams:\n";
-            for(int i=0;i<teamIDs.length;i++)
-            {
-                output += teamNames[i] + ": " + scores[i] + " wins.\n";
-            }
+            ResultParser temp=new ResultParser(pandaURLBase,token);
+            
         } catch (MalformedURLException ex) {
             Logger.getLogger(RestTeamConnector.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
