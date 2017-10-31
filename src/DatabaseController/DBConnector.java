@@ -6,6 +6,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 
@@ -48,5 +50,17 @@ public class DBConnector {
             System.out.print(e);
         }
         return resultSet;
+    }
+    
+    Object getConnect(){
+        return connect;
+    }
+    
+    void execute(PreparedStatement ps){
+        try {
+            ps.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
