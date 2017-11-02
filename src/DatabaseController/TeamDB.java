@@ -5,6 +5,9 @@
  */
 package DatabaseController;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Colum
@@ -19,12 +22,17 @@ public class TeamDB {
     
     public String[][] showAllTeams()
     {
-        String[][] out = DBParser.getAllTeams();
-        return out;
+        try {
+            String[][] out = DBParser.getInstance().getAllTeams();
+            return out;
+        } catch (Exception ex) {
+            Logger.getLogger(TeamDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
     
     public void update(int id, String name, Player[] players, double odds)
     {
-        DBParser.update(id,name,players,odds);
+        DBParser.getInstance().update(id,name,players,odds);
     }
 }

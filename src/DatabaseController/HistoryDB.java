@@ -10,5 +10,8 @@ package DatabaseController;
  * @author Colum
  */
 public class HistoryDB {
-    
+    public String[][] getHistory(String uname){
+        return DBParser.getInstance().getPreviousBets(uname);
+        
+    }
 }

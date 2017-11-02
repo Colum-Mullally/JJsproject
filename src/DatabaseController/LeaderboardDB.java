@@ -13,7 +13,7 @@ public class LeaderboardDB {
     
     public String[][] getLeaderBoard()
     {
-        String[][] out = DBParser.getLeaderBoard();
+        String[][] out = DBParser.getInstance().getLeaderboard();
         return out;
     }
 }
