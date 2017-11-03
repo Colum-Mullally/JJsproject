@@ -19,12 +19,7 @@ public class AccountDB {
         return out;
     }
     
-    public void getAccount(String username)
-    {
-        DBParser.getInstance().getAccount(username);
-    }
-
-    public Account getAccount(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Account getAccount(int id){
+        return DBParser.getInstance().getAccount(id);
     }
 }

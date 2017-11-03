@@ -5,6 +5,8 @@
  */
 package DatabaseController;
 
+import AccountManager.Account;
+import AccountManager.AccountFactory;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -28,6 +30,7 @@ public class DBParser {
     public DBParser() {
         instance = this;
         db = new DBConnector();
+        db.connectDataBase();
     }
     
   public static DBParser getInstance(){
@@ -37,7 +40,7 @@ public class DBParser {
       return instance;
   }
   
-  public boolean loginCheck(String u, String p) throws Exception{
+  public boolean check(String u, String p){
       try {
       ResultSet resultSet = db.getResultSet("select uname, password from "+dbName+".users where uname = '"+u+"'");
         if(resultSet.next()){
@@ -83,11 +86,11 @@ public class DBParser {
   
   public String[][] getLeaderboard(){
       try{
-        ResultSet resultSet = db.getResultSet("select score, uname from "+dbName+".users");
+        ResultSet resultSet = db.getResultSet("select Bal, uname from "+dbName+".users");
          ArrayList<String[]> arr = new ArrayList<String[]>();
         String[] sArr = new String[2];
         while(resultSet.next()){
-            sArr[0] = ""+resultSet.getInt("score");
+            sArr[0] = ""+resultSet.getDouble("Bal");
             sArr[1] = resultSet.getString("uname");
             arr.add(sArr);
         }
@@ -190,12 +193,19 @@ public class DBParser {
         }
     }
 
-    boolean check(String username, String password) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    void getAccount(String username) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    Account getAccount(int id) {
+        try {
+            ResultSet rs = db.getResultSet("Select Bal, Uname from "+dbName+".users where ID = "+id+";");
+            if(rs.next()){
+                Double xp = rs.getDouble("Bal");
+                String username = rs.getString("Uname");
+                AccountFactory af = new AccountFactory();
+                return af.getAccount(username, xp);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBParser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     void update(int id, String name, double odds) {
