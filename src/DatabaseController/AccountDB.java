@@ -5,7 +5,7 @@ import AccountManager.Account;
 
 /**
  *
- * @author Colum
+ * @author Jack
  */
 public class AccountDB {
         

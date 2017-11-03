@@ -7,7 +7,7 @@ package DatabaseController;
 
 /**
  *
- * @author Colum
+ * @author Jack
  */
 public class LeaderboardDB {
     private DataMapper dm = new DataMapper();
