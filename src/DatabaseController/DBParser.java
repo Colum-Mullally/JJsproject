@@ -5,12 +5,13 @@
  */
 package DatabaseController;
 
-import java.util.ArrayList;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,10 +20,7 @@ import java.util.logging.Logger;
  * @author jakec
  */
 public class DBParser {
-
-    static Team getTeam(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
     private String dbName = "stropse_no_elbag";
     private static DBParser instance = null;
     private PreparedStatement preparedStatement;
@@ -165,8 +163,7 @@ public class DBParser {
          try{
             ResultSet rs = db.getResultSet("select teamID from "+dbName+".teams where teamName = "+name+";");
             int x = rs.getInt("TeamID");
-            preparedStatement = db.getConnect()
-                .prepareStatement("insert into "+dbName+".players values ( ?, ?, ?, ?)");
+            preparedStatement = db.getConnect().prepareStatement("insert into "+dbName+".players values ( ?, ?, ?, ?)");
             // "myuser, webpage, datum, summery, COMMENTS from FEEDBACK.COMMENTS");
             // Parameters start with 1
             for(int i = 0; i < players.length  ; i++){
@@ -178,5 +175,42 @@ public class DBParser {
             }
     } catch (Exception e) {
     }
+    }
+
+    boolean addUser(String userName, String password, String email) {
+       try{
+            preparedStatement = db.getConnect().prepareStatement("insert into "+dbName+".users values ( ?, ?, ?)");
+                  preparedStatement.setString(1, userName);
+                  preparedStatement.setString(2, password);
+                  preparedStatement.setString(3, email);
+                  db.execute(preparedStatement);
+                return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    boolean check(String username, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void getAccount(String username) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void update(int id, String name, double odds) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    String[][] getAllPlayers() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    Player getPlayer(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    Team getTeam(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

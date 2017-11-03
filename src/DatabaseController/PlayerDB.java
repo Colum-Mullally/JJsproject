@@ -13,19 +13,19 @@ public class PlayerDB {
 
     public Player getPlayer(int id)
     {
-        Player out = DBParser.getPlayer(id);
+        Player out = DBParser.getInstance().getPlayer(id);
         return out;
     }
     
     public String[][] showAllPlayers()
     {
-        String[][] out = DBParser.getAllPlayers();
+        String[][] out = DBParser.getInstance().getAllPlayers();
         return out;
     }
     
     public void update(int id, String name, double odds)
     {
-        DBParser.update(id,name,odds);
+        DBParser.getInstance().update(id,name,odds);
     }
 
    

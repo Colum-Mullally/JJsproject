@@ -15,21 +15,13 @@ public class AccountDB {
     
     public boolean check(String username, String password)
     {
-        boolean out = DBParser.check(username, password);
+        boolean out = DBParser.getInstance().check(username, password);
         return out;
     }
     
     public void getAccount(String username)
     {
-        DBParser.getAccount(username);
-    }
-
-    public Account getAccount(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public Account getAccount(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        DBParser.getInstance().getAccount(username);
     }
 
     public Account getAccount(int id) {

@@ -8,15 +8,11 @@ package DatabaseController;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Colum
- */
 public class TeamDB {
     
     public Team getTeam(int id)
     {
-        Team out = DBParser.getTeam(id);
+        Team out = DBParser.getInstance().getTeam(id);
         return out;
     }
     

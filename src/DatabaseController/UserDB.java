@@ -15,7 +15,7 @@ public class UserDB {
     
     public boolean add(String userName, String password, String email)
     {
-        boolean result = parser.addUser(userName, password, email);
+        boolean result = DBParser.getInstance().addUser(userName, password, email);
         return result;
     }
 }
