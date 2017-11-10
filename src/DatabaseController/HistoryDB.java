@@ -9,9 +9,14 @@ package DatabaseController;
  *
  * @author Colum
  */
-public class HistoryDB {
+public class HistoryDB {private DataMapper dm = new DataMapper();
+    private DataSuper ds;
+    
+    public HistoryDB(){
+        ds = dm.getParserType();
+    }
     public String[][] getHistory(String uname){
-        return DBParser.getInstance().getPreviousBets(uname);
+        return ds.getPreviousBets(uname);
         
     }
 }

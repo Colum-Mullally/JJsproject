@@ -5,10 +5,17 @@
  */
 package Controllers;
 
+import DatabaseController.LeaderboardDB;
+
 /**
  *
  * @author Colum
  */
 public class LeaderBoard {
     
+    public String[][] getUsers(){
+        LeaderboardDB lDB = new LeaderboardDB();
+        String[][] uArr = lDB.getLeaderBoard();
+        return uArr;
+    }
 }

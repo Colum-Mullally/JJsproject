@@ -9,17 +9,22 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class TeamDB {
+    private DataMapper dm = new DataMapper();
+    private DataSuper ds;
     
-    public Team getTeam(int id)
+    public TeamDB(){
+        ds = dm.getParserType();
+    }
+    public Team getTeam(String name)
     {
-        Team out = DBParser.getInstance().getTeam(id);
+        Team out = ds.getTeam(name);
         return out;
     }
     
     public String[][] showAllTeams()
     {
         try {
-            String[][] out = DBParser.getInstance().getAllTeams();
+            String[][] out = ds.getAllTeams();
             return out;
         } catch (Exception ex) {
             Logger.getLogger(TeamDB.class.getName()).log(Level.SEVERE, null, ex);
@@ -29,6 +34,6 @@ public class TeamDB {
     
     public void update(int id, String name, Player[] players, double odds)
     {
-        DBParser.getInstance().update(id,name,players,odds);
+        ds.update(id,name,players,odds);
     }
 }

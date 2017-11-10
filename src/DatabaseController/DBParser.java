@@ -21,24 +21,15 @@ import java.util.logging.Logger;
  *
  * @author jakec
  */
-public class DBParser {
+public class DBParser extends DataSuper{
     
     private String dbName = "stropse_no_elbag";
-    private static DBParser instance = null;
     private PreparedStatement preparedStatement;
     private DBConnector db;
-    public DBParser() {
-        instance = this;
-        db = new DBConnector();
-        db.connectDataBase();
+    public DBParser(){
+        DBConnector.getInstance().connectDataBase();
     }
     
-  public static DBParser getInstance(){
-    if(instance==null){
-       instance = new DBParser();
-      }
-      return instance;
-  }
   
   public boolean check(String u, String p){
       try {
@@ -60,7 +51,7 @@ public class DBParser {
     }
   }
   
-  public String[][] getAllTeams() throws Exception{
+  public String[][] getAllTeams(){
       try {
         ArrayList<String[]> arr = new ArrayList<String[]>();
         String[] sArr = new String[2];
@@ -208,19 +199,102 @@ public class DBParser {
         return null;
     }
 
-    void update(int id, String name, double odds) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    void update(String name, double odds, String tname) {
+        try {
+                ResultSet rs = db.getResultSet("Select Count(name) from "+dbName+".users where name = "+name+";");
+                if(rs.getInt("Count(name)") > 1){
+                    preparedStatement = db.getConnect().prepareStatement("UPDATE ?.players set odds = ? where name = ?");
+                    preparedStatement.setString(1, dbName);
+                    preparedStatement.setDouble(2, odds);
+                    preparedStatement.setString(2, name);
+                    db.execute(preparedStatement);
+                }
+                else{
+                    preparedStatement = db.getConnect().prepareStatement("insert into ?.players values (?, ?, ?)");
+                    preparedStatement.setString(1, dbName);
+                    preparedStatement.setString(2, name);
+                    preparedStatement.setString(3, tname);
+                    preparedStatement.setDouble(4, odds);
+            
+                    db.execute(preparedStatement);
+                }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBParser.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     String[][] getAllPlayers() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    try {
+        ArrayList<String[]> arr = new ArrayList<String[]>();
+        String[] sArr = new String[2];
+        ResultSet resultSet = db.getResultSet("select id, name from "+dbName+".players");
+        while(resultSet.next()){
+            sArr[0] = ""+resultSet.getInt("id");
+            sArr[1] = resultSet.getString("name");
+        }
+        String[][] out = new String[arr.size()][2];
+        for(int i = 0; i < arr.size(); i++){
+           out[i][0] = arr.get(i)[0];
+           out[i][1] = arr.get(i)[1];
+        }
+        return out;
+        
+        }
+        catch(Exception e){
+            String[][] out = new String[1][2];
+            System.out.println(e);
+            return out;
+        }
     }
 
-    Player getPlayer(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    Player getPlayer(String name) {
+    try {
+        ResultSet resultSet = db.getResultSet("select name, odds from "+dbName+".players where name = "+name+";");
+        int id = 0;
+        Double odds = null;
+        if(resultSet.next()){
+            id = resultSet.getInt("id");
+            odds = resultSet.getDouble("odds");
+        }
+        return new Player(id, odds, name);
+        
+        }
+        catch(Exception e){
+            System.out.println("Error");
+            return new Player(0, 0, "Error");
+        }
     }
 
-    Team getTeam(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    Team getTeam(String name) {
+        try {
+        ArrayList<Player> arr = new ArrayList<Player>();
+        ResultSet resultSet = db.getResultSet("select id, odds from "+dbName+".teams where Team_Name = "+name+";");
+        int id = 0;
+        Double odds = null;
+        if(resultSet.next()){
+            id  = resultSet.getInt("id");
+            odds = resultSet.getDouble("odds");
+        }
+        resultSet = db.getResultSet("select id, name, odds from "+dbName+".players where team_name = "+name+";");
+        String pname;
+        Double podds;
+        int pid;
+        while(resultSet.next()){
+            pid = resultSet.getInt("id");
+            pname = resultSet.getString("name");
+            podds = resultSet.getDouble("odds");
+            arr.add(new Player(pid, podds, pname));
+        }
+        Player[] players = new Player[arr.size()];
+        for(int i = 0; i < arr.size(); i++){
+            players[i] = arr.get(i);
+        }
+        return new Team(id, odds, name, players);
+            
+        }
+        catch(Exception e){
+            System.out.println("Error");
+            return null;
+        }
     }
 }

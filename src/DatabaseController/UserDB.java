@@ -10,12 +10,16 @@ package DatabaseController;
  * @author Colum
  */
 public class UserDB {
+    private DataMapper dm = new DataMapper();
+    private DataSuper ds;
     
-    DBParser parser;
+    public UserDB(){
+        ds = dm.getParserType();
+    }
     
     public boolean add(String userName, String password, String email)
     {
-        boolean result = DBParser.getInstance().addUser(userName, password, email);
+        boolean result = ds.addUser(userName, password, email);
         return result;
     }
 }

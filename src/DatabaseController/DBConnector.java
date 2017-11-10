@@ -16,11 +16,19 @@ public class DBConnector {
     private Statement statement = null;
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
+    private static DBConnector instance = null;
     private String dbName;
     private boolean connectionFlag = false;
 
+    public static DBConnector getInstance(){
+        if(instance==null){
+           instance = new DBConnector();
+      }
+      return instance;
+  }
+    
     public void DBConnector(){
-        
+        instance = this;
     }
     
     public void connectDataBase(){

@@ -10,10 +10,16 @@ package DatabaseController;
  * @author Colum
  */
 public class LeaderboardDB {
+    private DataMapper dm = new DataMapper();
+    private DataSuper ds;
+    
+    public LeaderboardDB(){
+        ds = dm.getParserType();
+    }
     
     public String[][] getLeaderBoard()
     {
-        String[][] out = DBParser.getInstance().getLeaderboard();
+        String[][] out = ds.getLeaderboard();
         return out;
     }
 }

@@ -11,21 +11,27 @@ package DatabaseController;
  */
 public class PlayerDB {
 
+    private DataMapper dm = new DataMapper();
+    private DataSuper ds;
+    
+    public PlayerDB(){
+        ds = dm.getParserType();
+    }
     public Player getPlayer(int id)
     {
-        Player out = DBParser.getInstance().getPlayer(id);
+        Player out = ds.getPlayer(id);
         return out;
     }
     
     public String[][] showAllPlayers()
     {
-        String[][] out = DBParser.getInstance().getAllPlayers();
+        String[][] out = ds.getAllPlayers();
         return out;
     }
     
-    public void update(int id, String name, double odds)
+    public void update(String name, double odds, String tname)
     {
-        DBParser.getInstance().update(id,name,odds);
+        ds.update(name, odds, tname);
     }
 
    
