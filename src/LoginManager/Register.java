@@ -5,10 +5,26 @@
  */
 package LoginManager;
 
+import DatabaseController.UserDB;
+
 /**
  *
- * @author Colum
+ * @author Jack
  */
 public class Register {
+    
+    //private String username, password, email;
+    private final UserDB account;
+    
+    public Register()
+    {
+        account = new UserDB();
+    }
+    
+    public boolean registerUser(String nUser, String nPass, String nMail)
+    {
+        boolean out = account.add(nUser, nPass, nMail);
+        return out;
+    }
     
 }
