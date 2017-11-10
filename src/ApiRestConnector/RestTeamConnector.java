@@ -4,10 +4,11 @@
  * and open the template in the editor.
  */
 package ApiRestConnector;
-import JsonResultParser.ResultParser;
+import JsonStatParser.ReadTeamStats;
 import java.net.*;
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -15,7 +16,45 @@ import java.util.logging.Logger;
  * @author Colum
  */
 public class RestTeamConnector {
-    public RestTeamConnector() throws FileNotFoundException{
+    public RestTeamConnector() {
+         //switched to csv
+        String filename="Team.csv";
+        String lineFromFile="";
+        String fileElements[];
+        Scanner in;
+        File aFile;
+        aFile= new File(filename);
+        try {
+        in= new Scanner(aFile);
+        ReadTeamStats parser= new ReadTeamStats ();
+        while(in.hasNext())
+        {
+            lineFromFile=in.nextLine();
+            parser.parse(lineFromFile);
+            
+        }
+        in.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(RestPlayerConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }         
+    }
+}
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+         /*
         try {
             String token = "oc84ume5yB0v6OUFpMse0g-7wb65xBiC1W_HcZCqVB_OwLvWH6M";
             String jsonString1 = null, idString, nameString, jsonString2 = null, output;
@@ -50,4 +89,4 @@ public class RestTeamConnector {
        
     }
 
-}
+}*/

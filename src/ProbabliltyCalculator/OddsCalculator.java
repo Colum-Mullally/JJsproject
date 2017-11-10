@@ -5,10 +5,22 @@
  */
 package ProbabliltyCalculator;
 
+import MachineLearningOpinion.OpinionCalculator;
+
 /**
  *
  * @author Colum
  */
 public class OddsCalculator {
+
+    public OddsCalculator(String name, double outcomeS) {
+        OpinionCalculator cal=new OpinionCalculator();
+        double teamProb=outcomeS/cal.getOpinionValue();
+    }
+
+    public OddsCalculator(String name, double outcomeS, String Tname) {
+        OpinionCalculator cal=new OpinionCalculator();
+        double PlayerProb=outcomeS/cal.getOpinionValue();
+    }
     
 }

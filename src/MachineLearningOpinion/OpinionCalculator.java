@@ -10,5 +10,12 @@ package MachineLearningOpinion;
  * @author Colum
  */
 public class OpinionCalculator {
-    
+    private double randomNum ;
+    public OpinionCalculator(){
+    randomNum = (double)(Math.random() *1);
+    }
+    public double getOpinionValue(){
+      return randomNum;  
+    }
 }
+

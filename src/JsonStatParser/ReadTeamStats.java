@@ -5,10 +5,21 @@
  */
 package JsonStatParser;
 
+import MachineLearningOutcome.OutcomeCalculator;
+import java.util.ArrayList;
+
 /**
  *
  * @author Colum
  */
 public class ReadTeamStats {
+    
+    public void parse(String lineFromFile) {
+       String[] archive;
+        archive=lineFromFile.split(",");
+        int wins=Integer.parseInt(archive[1]);
+        int losses=Integer.parseInt(archive[2]);
+        OutcomeCalculator temp= new OutcomeCalculator(archive[0],wins,losses);
+    }
     
 }

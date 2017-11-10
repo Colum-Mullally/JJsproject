@@ -1,23 +1,47 @@
 
 package ApiRestConnector;
 
+import JsonStatParser.ReadPlayerStats;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.net.ssl.HttpsURLConnection;
 
 public class RestPlayerConnector {
-    private URL pandascoreURL; 
-    private String token="YOeSj7aUHe0yCft4uVWh6NiH1-RthxqvKu9RC6zT1PXlYnAUo50";
-    private String jsonString1;
-    RestPlayerConnector() throws MalformedURLException{
-       
+    RestPlayerConnector(){
+        //switched to csv
+        String filename="Player.csv";
+        String lineFromFile="";
+        String fileElements[];
+        Scanner in;
+        File aFile;
+        aFile= new File(filename);
+        try {
+        in= new Scanner(aFile);
+        ReadPlayerStats parser= new ReadPlayerStats ();
+        while(in.hasNext())
+        {
+            lineFromFile=in.nextLine();
+            parser.parse(lineFromFile);
+            
+        }
+        in.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(RestPlayerConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }         
+                
+        
+    }
+    }
   
-           pandascoreURL= new URL("https://api.pandascore.co/lol/players.json?page1&token="+token+"&sort=id");
+       /*    pandascoreURL= new URL("https://api.pandascore.co/lol/players.json?page1&token="+token+"&sort=id");
            try {
                HttpsURLConnection conn = (HttpsURLConnection) pandascoreURL.openConnection();
                jsonString1 = printContent(conn);
@@ -52,5 +76,5 @@ public class RestPlayerConnector {
             }
        }
         return output;
-   }
-}
+   }*/
+

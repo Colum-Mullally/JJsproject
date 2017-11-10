@@ -23,6 +23,10 @@ public class ResultParser {
         this.token=token;
         this.pandaURLBase=pandaURLBase;
     }
+
+    public ResultParser() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     public void TeamParser(String[] teamIDs,String[] teamNames)
     {
         HttpsURLConnection conn;
@@ -70,5 +74,9 @@ public class ResultParser {
             {
                 output += teamNames[i] + ": " + scores[i] + " wins.\n";
             }
+    }
+
+    public void parse(String lineFromFile) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
