@@ -34,6 +34,11 @@ public class PlatinumUser extends AccountDecorator{
     public void add(double amount) {
          balance+=amount;
     }
+
+    @Override
+    public String Uname() {
+        return userName;
+    }
     
     
 }

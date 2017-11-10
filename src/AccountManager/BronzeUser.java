@@ -33,6 +33,11 @@ public class BronzeUser implements Account{
     public void add(double amount) {
         balance+=amount;
     }
+
+    @Override
+    public String Uname() {
+        return userName;
+    }
     
     
 }

@@ -36,6 +36,11 @@ public class SilverUser extends AccountDecorator{
     public double balance() {
         return balance;
     }
+
+    @Override
+    public String Uname() {
+        return userName;
+    }
     
     
 }

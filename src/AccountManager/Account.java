@@ -13,6 +13,7 @@ public interface Account {
 
     double getMaxSupport();
    double balance();
+   String Uname();
     public void deductXP(double amount);
     public void add(double amount);
 }
