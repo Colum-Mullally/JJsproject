@@ -158,9 +158,9 @@ public class DBParser extends DataSuper{
 
     void update(String name, double odds) {
          try{
-            ResultSet rs = DBConnector.getInstance().execute("Select name from "+dbName+".teams where name = "+name+";");
+            ResultSet rs = DBConnector.getInstance().execute("Select TeamName from "+dbName+".teams where TeamName = "+name+";");
                 if(rs.next()){
-                    preparedStatement = DBConnector.getInstance().getConnect().prepareStatement("UPDATE ?.teams set odds = ? where name = ?");
+                    preparedStatement = DBConnector.getInstance().getConnect().prepareStatement("UPDATE ?.teams set odds = ? where TeamName = ?");
                     preparedStatement.setString(1, dbName);
                     preparedStatement.setDouble(2, odds);
                     preparedStatement.setString(2, name);
