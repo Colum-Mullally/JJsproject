@@ -31,6 +31,7 @@ public class ViewUpcomingGameUI extends javax.swing.JFrame {
              demoList.addElement(lie);
             jList1=new JList(demoList);
         }
+        initComponents();
     }
 
     /**
