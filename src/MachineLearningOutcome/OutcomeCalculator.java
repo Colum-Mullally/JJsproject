@@ -14,7 +14,13 @@ import ProbabliltyCalculator.OddsCalculator;
 public class OutcomeCalculator {
 
     public OutcomeCalculator(String name, int wins, int losses) {
-        double outcomeS=wins/losses;
+         double outcomeS;
+        if(losses!=0){
+        outcomeS=wins/losses;
+        }
+        else{
+            outcomeS=wins/wins+20;
+        }
         OddsCalculator cal=new OddsCalculator(name,outcomeS);
     }
 

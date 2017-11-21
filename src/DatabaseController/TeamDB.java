@@ -36,8 +36,9 @@ public class TeamDB {
         return null;
     }
     
-    public void update(int id, String name, Player[] players, double odds)
+    public void update(String name, double odds)
     {
-        ds.update(id,name,players,odds);
+        ds.update(name,odds);
     }
+
 }
