@@ -156,20 +156,24 @@ public class DBParser extends DataSuper{
       }
   }
 
-    void update(int id, String name, Player[] players, double odds) {
+    void update(String name, double odds) {
          try{
-            ResultSet rs = DBConnector.getInstance().getResultSet("select teamID from "+dbName+".teams where teamName = "+name+";");
-            int x = rs.getInt("TeamID");
-            preparedStatement = c.prepareStatement("insert into "+dbName+".players values ( ?, ?, ?, ?)");
-            // "myuser, webpage, datum, summery, COMMENTS from FEEDBACK.COMMENTS");
-            // Parameters start with 1
-            for(int i = 0; i < players.length  ; i++){
-              preparedStatement.setInt(1, id);
-              preparedStatement.setString(2, ""+players[i]);
-              preparedStatement.setInt(3, x);
-              preparedStatement.setDouble(4, odds);
-              DBConnector.getInstance().execute(preparedStatement);
-            }
+            ResultSet rs = DBConnector.getInstance().getResultSet("Select Count(name) from "+dbName+".teams where name = "+name+";");
+                if(rs.getInt("Count(name)") < 1){
+                    preparedStatement = c.prepareStatement("UPDATE ?.teams set odds = ? where name = ?");
+                    preparedStatement.setString(1, dbName);
+                    preparedStatement.setDouble(2, odds);
+                    preparedStatement.setString(2, name);
+                    DBConnector.getInstance().execute(preparedStatement);
+                }
+                else{
+                    preparedStatement = c.prepareStatement("insert into ?.teams (teamname, odds) values (?, ?, ?)");
+                    preparedStatement.setString(1, dbName);
+                    preparedStatement.setString(2, name);
+                    preparedStatement.setDouble(4, odds);
+            
+                    DBConnector.getInstance().execute(preparedStatement);
+                }
     } catch (Exception e) {
     }
     }
