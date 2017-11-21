@@ -116,6 +116,8 @@ public class DBParser extends DataSuper{
             }
         } catch (SQLException ex) {
             Logger.getLogger(DBParser.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(DBParser.class.getName()).log(Level.SEVERE, null, ex);
         }
   }
   
@@ -187,6 +189,9 @@ public class DBParser extends DataSuper{
         } catch (SQLException ex) {
             Logger.getLogger(DBParser.class.getName()).log(Level.SEVERE, null, ex);
             return false;
+        } catch (Exception ex) {
+            Logger.getLogger(DBParser.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
     }
 
@@ -225,6 +230,8 @@ public class DBParser extends DataSuper{
                     DBConnector.getInstance().execute(preparedStatement);
                 }
         } catch (SQLException ex) {
+            Logger.getLogger(DBParser.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(DBParser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
