@@ -253,11 +253,10 @@ public class DBParser extends DataSuper{
                     DBConnector.getInstance().execute(preparedStatement);
                 }
                 else{
-                    preparedStatement = DBConnector.getInstance().getConnect().prepareStatement("insert into ?.players (name, teamname, odds) values (?, ?, ?)");
-                    preparedStatement.setString(1, dbName);
-                    preparedStatement.setString(2, name);
-                    preparedStatement.setString(3, tname);
-                    preparedStatement.setDouble(4, odds);
+                    preparedStatement = DBConnector.getInstance().getConnect().prepareStatement("insert into "+dbName+".players (name, teamname, odds) values (?, ?, ?)");
+                    preparedStatement.setString(1, name);
+                    preparedStatement.setString(2, tname);
+                    preparedStatement.setDouble(3, odds);
             
                     DBConnector.getInstance().execute(preparedStatement);
                 }
