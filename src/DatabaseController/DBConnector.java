@@ -92,4 +92,8 @@ public class DBConnector {
             return null;
         }
     }
+
+    void close() {
+    
+    }
 }
