@@ -18,7 +18,7 @@ public class ReadPlayerStats {
         archive=lineFromFile.split(",");
         int kills=Integer.parseInt(archive[1]);
         int deaths=Integer.parseInt(archive[2]);
-        OutcomeCalculator temp= new OutcomeCalculator(archive[0],kills,deaths,archive[3]);
+        OutcomeCalculator temp= new OutcomeCalculator(archive[0],kills,deaths);
     }
     
 }
