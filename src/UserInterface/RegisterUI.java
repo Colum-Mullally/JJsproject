@@ -6,6 +6,7 @@
 package UserInterface;
 
 import LoginManager.Register;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -43,17 +44,10 @@ public class RegisterUI extends javax.swing.JFrame {
 
         jLabel2.setText("Password");
 
-        jPasswordField1.setText("jPasswordField1");
-
         jButton1.setText("Submit");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
-            }
-        });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
             }
         });
 
@@ -111,17 +105,17 @@ public class RegisterUI extends javax.swing.JFrame {
         String email = jTextField2.getText();
         Register Controller = new Register();
         boolean show = Controller.registerUser(username, password , email);
-        //TODO: If show is true, hide this window and display the main menu. Else, popup error message.
+        //If show is true, hide this window and display the main menu. Else, popup error message.
         if(show){
             MainMenuUI temp= new MainMenuUI(username);
             temp.setVisible(true);
             dispose();
         }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"Something went wrong.","Error",0,null);
+        }
     }//GEN-LAST:event_jButton1MouseClicked
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling
-    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
