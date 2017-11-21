@@ -51,6 +51,11 @@ public class LoginUI extends javax.swing.JFrame {
                 jButton2MouseClicked(evt);
             }
         });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Username");
 
@@ -108,6 +113,11 @@ public class LoginUI extends javax.swing.JFrame {
         String password = new String(jPasswordField1.getPassword());
         Login Controller = new Login();
         boolean show = Controller.verifyLogin(username, password);
+        if(show){
+            MainMenuUI temp= new MainMenuUI(username);
+            temp.setVisible(true);
+            dispose();
+        }
         //TODO: If show is true, show main menu. Else, show error message.
     }//GEN-LAST:event_jButton2MouseClicked
 
@@ -117,6 +127,10 @@ public class LoginUI extends javax.swing.JFrame {
         reg.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,6 +164,7 @@ public class LoginUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new LoginUI().setVisible(true);
+                
             }
         });
     }

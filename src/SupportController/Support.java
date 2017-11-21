@@ -10,17 +10,19 @@ package SupportController;
  * @author Colum
  */
 public class Support {
-    private int id,Pid;
+    private int id;
+    private String Pid;
     private double amount;
-    Support(int id,double amount){
+    Support(int id,String Pid,double amount){
         this.id=id;
+        this.Pid=Pid;
         this.amount=amount;
         
     }
     void Selection(int choice){
         if (choice==1)
         {
-            SupportPlayer temp=new SupportPlayer(id,Pid,amount);
+            SupportPlayer temp=new SupportPlayer(id,id,amount);
         }
         else if(choice==2)
         {

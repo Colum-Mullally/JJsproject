@@ -21,11 +21,11 @@ public class SupportTeam {
     private Account User;
     private TeamDB database;
     Team team;
-    SupportTeam(int id,int pid, double amount) {
+    SupportTeam(int id,String pid, double amount) {
         this.id=id;
         this.amount=amount;
         database= new TeamDB();
-        team=database.getTeam(id); 
+        team=database.getTeam(pid); 
         double odds=team.getTeamOdds();
         AccountDB holder=new AccountDB();
         User=holder.getAccount(id);

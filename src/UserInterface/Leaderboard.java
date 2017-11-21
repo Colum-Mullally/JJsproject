@@ -14,7 +14,7 @@ import DatabaseController.LeaderboardDB;
  */
 public class Leaderboard extends javax.swing.JFrame {
     
-    
+    String username;
     void getUsers(){
         LeaderBoard l = new LeaderBoard();
         String[][] uArr = l.getUsers();
@@ -26,7 +26,8 @@ public class Leaderboard extends javax.swing.JFrame {
             leaderList.add(this, uArr[0][i]+"\t"+uArr[1][i]);
         }
     }
-    public Leaderboard() {
+    public Leaderboard(String username) {
+        this.username= username;
         initComponents();
     }
 
@@ -87,19 +88,9 @@ public class Leaderboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        
+        MainMenuUI temp =new MainMenuUI(username);
     }//GEN-LAST:event_backButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Leaderboard().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
