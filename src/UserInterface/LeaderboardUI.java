@@ -12,7 +12,7 @@ import DatabaseController.LeaderboardDB;
  *
  * @author jakec
  */
-public class Leaderboard extends javax.swing.JFrame {
+public class LeaderboardUI extends javax.swing.JFrame {
     
     String username;
     void getUsers(){
@@ -26,7 +26,7 @@ public class Leaderboard extends javax.swing.JFrame {
             leaderList.add(this, uArr[0][i]+"\t"+uArr[1][i]);
         }
     }
-    public Leaderboard(String username) {
+    public LeaderboardUI(String username) {
         this.username= username;
         initComponents();
     }

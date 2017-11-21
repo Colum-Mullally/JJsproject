@@ -112,10 +112,15 @@ public class RegisterUI extends javax.swing.JFrame {
         Register Controller = new Register();
         boolean show = Controller.registerUser(username, password , email);
         //TODO: If show is true, hide this window and display the main menu. Else, popup error message.
+        if(show){
+            MainMenuUI temp= new MainMenuUI(username);
+            temp.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 import javax.net.ssl.HttpsURLConnection;
 
 public class RestPlayerConnector {
-    RestPlayerConnector(){
+    public RestPlayerConnector(){
         //switched to csv
         String filename="Player.csv";
         String lineFromFile="";

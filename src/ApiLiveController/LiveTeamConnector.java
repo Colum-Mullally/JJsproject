@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  * @author Colum
  */
 public class LiveTeamConnector {
-    LiveTeamConnector(){
+    public LiveTeamConnector(){
          //switched to csv
         String filename="TeamR.csv";
         String lineFromFile="";
