@@ -28,7 +28,6 @@ public class DBParser extends DataSuper{
     private Connection c;
     public DBParser(){
         DBConnector.getInstance().connectDataBase();
-        c = DBConnector.getInstance().getConnect();
     }
     
   

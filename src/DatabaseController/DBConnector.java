@@ -20,7 +20,7 @@ public class DBConnector {
     private String dbName = "stropse_no_elbmag";
     private boolean connectionFlag = false;
 
-    public static DBConnector getInstance(){
+    public static synchronized DBConnector getInstance(){
         if(instance==null){
            instance = new DBConnector();
       }
@@ -46,6 +46,7 @@ public class DBConnector {
 
         // Statements allow to issue SQL queries to the database
         statement = (Statement) connect.createStatement();
+        connectionFlag = true;
         }
         catch(Exception e){
             connectionFlag = false;
@@ -79,18 +80,21 @@ public class DBConnector {
         if(!connectionFlag){
             connectDataBase();
         }
-            ps.executeUpdate();
+        ps.executeUpdate();
+        connect.close();
+        connectionFlag = false;
     }
     
     ResultSet execute(String sqlStatement){
         if(!connectionFlag)
             connectDataBase();
+        ResultSet s = null;
         try {
-            return statement.executeQuery(sqlStatement);
+            s =  statement.executeQuery(sqlStatement);
         } catch (SQLException ex) {
             Logger.getLogger(DBConnector.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
         }
+        return s;
     }
 
     void close() {
