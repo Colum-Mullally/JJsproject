@@ -105,7 +105,7 @@ public class DBParser extends DataSuper{
   
   public void updateWins(String uname){
         try {
-            ResultSet rs = DBConnector.getInstance().getResultSet("Select wins from "+dbName+" where uname = "+ uname+";");
+            ResultSet rs = DBConnector.getInstance().getResultSet("Select wins from "+dbName+" where uname = '"+ uname+"';");
             if(rs.next()){
                 int x = rs.getInt("wins");
                 preparedStatement = DBConnector.getInstance().getConnect().prepareStatement("UPDATE ?.users set wins = ? where uname = ?");
@@ -123,12 +123,12 @@ public class DBParser extends DataSuper{
   
   public String[][] getPreviousBets(String uname){
   try{
-        ResultSet resultSet = DBConnector.getInstance().getResultSet("select BetID, amount, team, winner from "+dbName+".placed_bets where uname = "+uname+";");
+        ResultSet resultSet = DBConnector.getInstance().getResultSet("select BetID, amount, team, winner from "+dbName+".placed_bets where uname = '"+uname+"';");
          ArrayList<String[]> arr = new ArrayList<String[]>();
         String[] sArr = new String[5];
         while(resultSet.next()){
             int x = resultSet.getInt("BetID");
-            ResultSet rs = DBConnector.getInstance().getResultSet("select team1, team2 from "+dbName+".bets where BetID = "+x+";");
+            ResultSet rs = DBConnector.getInstance().getResultSet("select team1, team2 from "+dbName+".bets where BetID = '"+x+"';");
             sArr[0] = rs.getString("team1");
             sArr[1] = rs.getString("team2");
             sArr[2] = ""+resultSet.getInt("amount");
