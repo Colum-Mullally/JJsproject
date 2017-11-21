@@ -245,7 +245,7 @@ public class DBParser extends DataSuper{
 
     void update(String name, double odds, String tname) {
         try {
-                ResultSet rs = DBConnector.getInstance().getResultSet("Select name from "+dbName+".players where name = '"+name+"';");
+                ResultSet rs = DBConnector.getInstance().execute("Select name from "+dbName+".players where name = '"+name+"';");
                 if(rs.next()){
                     preparedStatement = DBConnector.getInstance().getConnect().prepareStatement("UPDATE "+dbName+".players set odds = ? where name = ?");
                     preparedStatement.setDouble(1, odds);
