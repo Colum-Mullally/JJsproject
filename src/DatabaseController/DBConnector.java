@@ -17,7 +17,7 @@ public class DBConnector {
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
     private static DBConnector instance = null;
-    private String dbName;
+    private String dbName = "stropse_no_elbmag";
     private boolean connectionFlag = false;
 
     public static DBConnector getInstance(){
@@ -28,17 +28,21 @@ public class DBConnector {
   }
     
     public void DBConnector(){
+        connectDataBase();
         instance = this;
+        
     }
     
     public void connectDataBase(){
         try{
+                  
+            
         // This will load the MySQL driver, each DB has its own driver
         Class.forName("com.mysql.jdbc.Driver");
         // Setup the connection with the DB
         connect = DriverManager
                 .getConnection("jdbc:mysql://localhost/"+dbName+"?"
-                        + "user=username&password=password");
+                        + "user=root&password=");
 
         // Statements allow to issue SQL queries to the database
         statement = (Statement) connect.createStatement();
@@ -50,6 +54,9 @@ public class DBConnector {
     }
     
     public ResultSet getResultSet(String sqlStatement){
+        if(!connectionFlag){
+            connectDataBase();
+        }
         try{
             resultSet = statement
                     .executeQuery(sqlStatement);
@@ -62,15 +69,17 @@ public class DBConnector {
     }
     
     Connection getConnect(){
+        if(!connectionFlag){
+            connectDataBase();
+        }
         return connect;
     }
     
-    void execute(PreparedStatement ps){
-        try {
-            ps.executeQuery();
-        } catch (SQLException ex) {
-            Logger.getLogger(DBConnector.class.getName()).log(Level.SEVERE, null, ex);
+    void execute(PreparedStatement ps) throws Exception{
+        if(!connectionFlag){
+            connectDataBase();
         }
+            ps.executeUpdate();
     }
     
   
