@@ -77,7 +77,7 @@ public class DBParser extends DataSuper{
   
   public String[][] getLeaderboard(){
       try{
-        ResultSet resultSet = DBConnector.getInstance().getResultSet("select Bal, uname from "+dbName+".users");
+        ResultSet resultSet = DBConnector.getInstance().execute("select Bal, uname from "+dbName+".users ORDER BY (Bal) ASC;");
          ArrayList<String[]> arr = new ArrayList<String[]>();
         String[] sArr = new String[2];
         while(resultSet.next()){
@@ -96,17 +96,10 @@ public class DBParser extends DataSuper{
       catch(SQLException e){
         String[][] out = new String[1][2];
         out[0][0] = "Error";
-        out[0][1] = ""+e;
+        out[0][1] = "";
         System.out.println(e);
         return out;
       }
-    finally{
-        try {
-            preparedStatement.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(DBParser.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
   }
   
   public void updateWins(String uname){
