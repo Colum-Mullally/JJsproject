@@ -82,5 +82,14 @@ public class DBConnector {
             ps.executeUpdate();
     }
     
-  
+    ResultSet execute(String sqlStatement){
+        if(!connectionFlag)
+            connectDataBase();
+        try {
+            return statement.executeQuery(sqlStatement);
+        } catch (SQLException ex) {
+            Logger.getLogger(DBConnector.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 }

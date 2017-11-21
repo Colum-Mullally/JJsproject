@@ -108,7 +108,7 @@ public class DBParser extends DataSuper{
             ResultSet rs = DBConnector.getInstance().getResultSet("Select wins from "+dbName+" where uname = "+ uname+";");
             if(rs.next()){
                 int x = rs.getInt("wins");
-                preparedStatement = c.prepareStatement("UPDATE ?.users set wins = ? where uname = ?");
+                preparedStatement = DBConnector.getInstance().getConnect().prepareStatement("UPDATE ?.users set wins = ? where uname = ?");
                 preparedStatement.setString(1, dbName);
                 preparedStatement.setInt(2, x);
                 preparedStatement.setString(1, uname);
@@ -158,16 +158,16 @@ public class DBParser extends DataSuper{
 
     void update(String name, double odds) {
          try{
-            ResultSet rs = DBConnector.getInstance().getResultSet("Select Count(name) from "+dbName+".teams where name = "+name+";");
-                if(rs.getInt("Count(name)") < 1){
-                    preparedStatement = c.prepareStatement("UPDATE ?.teams set odds = ? where name = ?");
+            ResultSet rs = DBConnector.getInstance().execute("Select TeamName from "+dbName+".teams where TeamName = '"+name+"';");
+                if(rs.next()){
+                    preparedStatement = DBConnector.getInstance().getConnect().prepareStatement("UPDATE ?.teams set odds = ? where TeamName = ?");
                     preparedStatement.setString(1, dbName);
                     preparedStatement.setDouble(2, odds);
                     preparedStatement.setString(2, name);
                     DBConnector.getInstance().execute(preparedStatement);
                 }
                 else{
-                    preparedStatement = c.prepareStatement("insert into ?.teams (teamname, odds) values (?, ?, ?)");
+                    preparedStatement = DBConnector.getInstance().getConnect().prepareStatement("insert into ?.teams (teamname, odds) values (?, ?, ?)");
                     preparedStatement.setString(1, dbName);
                     preparedStatement.setString(2, name);
                     preparedStatement.setDouble(4, odds);
@@ -201,7 +201,7 @@ public class DBParser extends DataSuper{
 
     Account getAccount(int id) {
         try {
-            ResultSet rs = DBConnector.getInstance().getResultSet("Select Bal, Uname from "+dbName+".users where ID = "+id+";");
+            ResultSet rs = DBConnector.getInstance().getResultSet("Select Bal, Uname from "+dbName+".users where ID = '"+id+"';");
             if(rs.next()){
                 Double xp = rs.getDouble("Bal");
                 String username = rs.getString("Uname");
@@ -216,16 +216,16 @@ public class DBParser extends DataSuper{
 
     void update(String name, double odds, String tname) {
         try {
-                ResultSet rs = DBConnector.getInstance().getResultSet("Select Count(name) from "+dbName+".players where name = "+name+";");
+                ResultSet rs = DBConnector.getInstance().getResultSet("Select Count(name) from "+dbName+".players where name = '"+name+"';");
                 if(rs.getInt("Count(name)") > 1){
-                    preparedStatement = c.prepareStatement("UPDATE ?.players set odds = ? where name = ?");
+                    preparedStatement = DBConnector.getInstance().getConnect().prepareStatement("UPDATE ?.players set odds = ? where name = ?");
                     preparedStatement.setString(1, dbName);
                     preparedStatement.setDouble(2, odds);
                     preparedStatement.setString(2, name);
                     DBConnector.getInstance().execute(preparedStatement);
                 }
                 else{
-                    preparedStatement = c.prepareStatement("insert into ?.players (name, teamname, odds) values (?, ?, ?)");
+                    preparedStatement = DBConnector.getInstance().getConnect().prepareStatement("insert into ?.players (name, teamname, odds) values (?, ?, ?)");
                     preparedStatement.setString(1, dbName);
                     preparedStatement.setString(2, name);
                     preparedStatement.setString(3, tname);
@@ -266,7 +266,7 @@ public class DBParser extends DataSuper{
 
     Player getPlayer(String name) {
     try {
-        ResultSet resultSet = DBConnector.getInstance().getResultSet("select name, odds from "+dbName+".players where name = "+name+";");
+        ResultSet resultSet = DBConnector.getInstance().getResultSet("select name, odds from "+dbName+".players where name = '"+name+"';");
         int id = 0;
         Double odds = null;
         if(resultSet.next()){
@@ -285,14 +285,14 @@ public class DBParser extends DataSuper{
     Team getTeam(String name) {
         try {
         ArrayList<Player> arr = new ArrayList<Player>();
-        ResultSet resultSet = DBConnector.getInstance().getResultSet("select id, odds from "+dbName+".teams where Team_Name = "+name+";");
+        ResultSet resultSet = DBConnector.getInstance().getResultSet("select id, odds from "+dbName+".teams where Team_Name = '"+name+"';");
         int id = 0;
         Double odds = null;
         if(resultSet.next()){
             id  = resultSet.getInt("id");
             odds = resultSet.getDouble("odds");
         }
-        resultSet = DBConnector.getInstance().getResultSet("select id, name, odds from "+dbName+".players where team_name = "+name+";");
+        resultSet = DBConnector.getInstance().getResultSet("select id, name, odds from "+dbName+".players where team_name = '"+name+"';");
         String pname;
         Double podds;
         int pid;
