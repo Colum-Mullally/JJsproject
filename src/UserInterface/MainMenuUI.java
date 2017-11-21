@@ -43,6 +43,11 @@ public class MainMenuUI extends javax.swing.JFrame {
         });
 
         jButton2.setText("LeaderBoard");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Logout");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -101,10 +106,17 @@ public class MainMenuUI extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
             // TODO add your handling code here:
-        ViewUpcomingGameUI temp = new ViewUpcomingGameUI();
+        ViewUpcomingGameUI temp = new ViewUpcomingGameUI(username);
         temp.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        LeaderboardUI temp = new LeaderboardUI(username);
+        temp.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
 

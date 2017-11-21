@@ -19,7 +19,9 @@ public class ViewUpcomingGameUI extends javax.swing.JFrame {
     /**
      * Creates new form ViewUpcomingGame
      */
-    public ViewUpcomingGameUI() {
+    String username;
+    public ViewUpcomingGameUI(String username) {
+        this.username=username;
         ViewUpcomingGames temp = new ViewUpcomingGames();
         ArrayList<String[]> fList = temp.getFixture();
         String lie;
