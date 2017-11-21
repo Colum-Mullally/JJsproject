@@ -7,6 +7,7 @@ package UserInterface;
 
 import Controllers.LeaderBoard;
 import DatabaseController.LeaderboardDB;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -22,9 +23,11 @@ public class LeaderboardUI extends javax.swing.JFrame {
     }
     
     void setUsers(String[][] uArr){
+        DefaultListModel list = new DefaultListModel();
         for(int i = 0; i < uArr.length ; i++){
-            leaderList.add(this, uArr[0][i]+"\t"+uArr[1][i]);
+            list.addElement(uArr[0][i]+"\t"+uArr[1][i]);
         }
+        leaderList.setModel(list);
     }
     public LeaderboardUI(String username) {
         this.username= username;
@@ -46,14 +49,9 @@ public class LeaderboardUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        leaderList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(leaderList);
 
-        backButton.setText("jButton1");
+        backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);
@@ -89,6 +87,8 @@ public class LeaderboardUI extends javax.swing.JFrame {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         MainMenuUI temp =new MainMenuUI(username);
+        temp.setVisible(true);
+        dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 
 
