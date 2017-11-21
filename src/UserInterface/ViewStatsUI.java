@@ -23,6 +23,7 @@ public class ViewStatsUI extends javax.swing.JFrame {
         String Uname= con.getUname();
         jLabel2.setText(""+con);
         jLabel1.setText(Uname);
+        initComponents();
     }
 
     /**

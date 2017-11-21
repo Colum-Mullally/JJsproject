@@ -181,7 +181,7 @@ public class DBParser extends DataSuper{
     boolean addUser(String userName, String password, String email) {
         
         try {
-            preparedStatement = c.prepareStatement("insert into "+dbName+".users (uname, password, email ,Bal) values ( ?, ?, ?, ?)");
+            preparedStatement = DBConnector.getInstance().getConnect().prepareStatement("insert into "+dbName+".users (uname, password, email ,Bal) values ( ?, ?, ?, ?)");
             
             preparedStatement.setString(1, userName);
             preparedStatement.setString(2, password);
