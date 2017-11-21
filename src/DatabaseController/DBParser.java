@@ -55,10 +55,10 @@ public class DBParser extends DataSuper{
       try {
         ArrayList<String[]> arr = new ArrayList<String[]>();
         String[] sArr = new String[2];
-        ResultSet resultSet = DBConnector.getInstance().getResultSet("select id, teamname from "+dbName+".teams");
+        ResultSet resultSet = DBConnector.getInstance().getResultSet("select odds, teamname from "+dbName+".teams");
         while(resultSet.next()){
-            sArr[0] = ""+resultSet.getInt("id");
-            sArr[1] = resultSet.getString("team_name");
+            sArr[0] = resultSet.getString("teamname");
+            sArr[1] = ""+resultSet.getDouble("odds");
         }
         String[][] out = new String[arr.size()][2];
         for(int i = 0; i < arr.size(); i++){
@@ -66,7 +66,6 @@ public class DBParser extends DataSuper{
            out[i][1] = arr.get(i)[1];
         }
         return out;
-        
     }
     catch(Exception e){
         String[][] out = new String[1][2];
@@ -270,10 +269,10 @@ public class DBParser extends DataSuper{
     try {
         ArrayList<String[]> arr = new ArrayList<String[]>();
         String[] sArr = new String[2];
-        ResultSet resultSet = DBConnector.getInstance().getResultSet("select id, name from "+dbName+".players");
+        ResultSet resultSet = DBConnector.getInstance().getResultSet("select odds, name from "+dbName+".players");
         while(resultSet.next()){
-            sArr[0] = ""+resultSet.getInt("id");
-            sArr[1] = resultSet.getString("name");
+            sArr[0] = resultSet.getString("name");
+            sArr[1] = ""+resultSet.getDouble("odds");
         }
         String[][] out = new String[arr.size()][2];
         for(int i = 0; i < arr.size(); i++){
