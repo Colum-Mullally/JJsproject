@@ -12,22 +12,28 @@ import ProbabliltyCalculator.OddsCalculator;
  * @author Colum
  */
 public class OutcomeCalculator {
+    public OutcomeCalculator(){
+        
+    }
 
     public OutcomeCalculator(String name, int wins, int losses) {
-         double outcomeS;
+        OddsCalculator cal=new OddsCalculator(name,OddsMaker(wins,losses));
+    }
+
+    public OutcomeCalculator(String name, int kills, int deaths, String Tname) {
+        double outcomeS=kills/kills+deaths;
+        OddsCalculator cal=new OddsCalculator(name,outcomeS,Tname);
+    }
+    public double OddsMaker(int wins, int losses){
+        double outcomeS;
          int wl=wins+losses;
          System.out.println(wl);
          if(wl==0){
              outcomeS= 0.5;
          }
          else
-            outcomeS=wins/wl;
-        OddsCalculator cal=new OddsCalculator(name,outcomeS);
-    }
-
-    public OutcomeCalculator(String name, int kills, int deaths, String Tname) {
-        double outcomeS=kills/kills+deaths;
-        OddsCalculator cal=new OddsCalculator(name,outcomeS,Tname);
+            outcomeS=(double) wins/wl;
+        return outcomeS;
     }
     
 }
