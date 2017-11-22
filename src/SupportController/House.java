@@ -6,6 +6,7 @@
 package SupportController;
 
 import AccountManager.Account;
+import DatabaseController.HistoryDB;
 import DatabaseController.ResultDB;
 
 /**
@@ -22,8 +23,9 @@ public class House extends Observer{
         this.user=user;
         this.house = new ResultDB();
         this.house.attach(this);
-        
-    }
+        HistoryDB archive=new HistoryDB();
+        archive.placebet(user,amount,odds);
+        }
     public void pay(){
         user.add(amount*odds);
     }

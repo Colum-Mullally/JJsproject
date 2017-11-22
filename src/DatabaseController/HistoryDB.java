@@ -5,6 +5,8 @@
  */
 package DatabaseController;
 
+import AccountManager.Account;
+
 /**
  *
  * @author Jack
@@ -19,4 +21,9 @@ public class HistoryDB {private DataMapper dm = new DataMapper();
         return ds.getPreviousBets(uname);
         
     }
+
+    public void placebet(Account user, double amount, double odds) {
+      ds.placebet(user,amount,odds);
+    }
+    
 }
