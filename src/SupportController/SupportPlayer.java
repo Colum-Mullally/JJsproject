@@ -18,13 +18,13 @@ public class SupportPlayer {
     private Account user;
     private PlayerDB database;
     Player player;
-    SupportPlayer(int id,int Pid ,double amount) {
+    SupportPlayer(String name,String pname ,double amount) {
         this.id=id;
         this.amount=amount;
         AccountDB holder=new AccountDB();
         user=holder.getAccount(id);
         database= new PlayerDB();
-        player=database.getPlayer(Pid);
+        player=database.getPlayer(pname);
         double odds=player.getPlayerOdds();
         user.deductXP(amount);
         House temp= new House();

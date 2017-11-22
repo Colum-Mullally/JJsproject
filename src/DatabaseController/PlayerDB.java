@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package DatabaseController;
-
 /**
  *
  * @author Jack
@@ -17,7 +16,7 @@ public class PlayerDB {
     public PlayerDB(){
         ds = dm.getParserType();
     }
-    public Player getPlayer(int id)
+    public Player getPlayer(String id)
     {
         Player out = ds.getPlayer(id);
         return out;

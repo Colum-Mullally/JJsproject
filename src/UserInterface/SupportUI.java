@@ -5,16 +5,39 @@
  */
 package UserInterface;
 
+import SupportController.Support;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+
 /**
  *
  * @author Colum
  */
 public class SupportUI extends javax.swing.JFrame {
 
+    private String username;
+
     /**
      * Creates new form Support
      */
-    public SupportUI() {
+    public SupportUI(String username) {
+        this.username=username;
+        Support control= new Support(username);
+        String[][] pList=control.getAllPlayers();
+        String[][] tList=control.getAllTeams();
+        String lie;
+        for(int i = 0; i < pList[0].length; i++){
+            lie=pList[i][0]+pList[i][1];
+             DefaultListModel demoList = new DefaultListModel();
+             demoList.addElement(lie);
+            jList=new JList(demoList);
+        }
+        for(int i = 0; i < tList[0].length; i++){
+            lie=tList[i][0]+tList[i][1];
+             DefaultListModel demoList = new DefaultListModel();
+             demoList.addElement(lie);
+            jList=new JList(demoList);
+        }
         initComponents();
     }
 
@@ -30,7 +53,8 @@ public class SupportUI extends javax.swing.JFrame {
         supportButton = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        model = new DefaultListModel<>();
+        jList = new javax.swing.JList<>(model);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,19 +65,13 @@ public class SupportUI extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setText("jTextField1");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(jList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -64,10 +82,10 @@ public class SupportUI extends javax.swing.JFrame {
                 .addComponent(supportButton)
                 .addContainerGap(164, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(103, 103, 103)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jTextField1)
                 .addGap(74, 74, 74))
         );
         layout.setVerticalGroup(
@@ -99,7 +117,8 @@ public class SupportUI extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> jList1;
+    DefaultListModel<String> model;
+    private javax.swing.JList<String> jList;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton supportButton;

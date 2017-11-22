@@ -8,62 +8,30 @@ package DatabaseController;
 import AccountManager.Account;
 
 
-public class DataSuper {
+public interface DataSuper {
 
-    Account getAccount(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    Account getAccount(int id);
 
-    boolean check(String username, String password) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    boolean check(String username, String password);
 
-    String[][] getPreviousBets(String uname) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    String[][] getPreviousBets(String uname);
 
-    String[][] getLeaderboard() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    String[][] getLeaderboard();
 
-    Player getPlayer(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    Player getPlayer(String name);
+    
 
-    String[][] getAllPlayers() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    String[][] getAllPlayers();
 
-    void update(int id, String name, double odds) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    String[][] getAllTeams();
 
-    String[][] getAllTeams() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    Team getTeam(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    void update(String name, double odds);
 
-    void update(int id, String name, Player[] players, double odds) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    boolean addUser(String userName, String password, String email);
 
-    boolean addUser(String userName, String password, String email) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    Team getTeam(String name);
 
-    Team getTeam(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    void update(String name, double odds, String tname) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    void update(String name, double odds) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    void update(String name, double odds, String tname);
     
 }

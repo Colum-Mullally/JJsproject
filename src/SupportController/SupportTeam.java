@@ -34,5 +34,9 @@ public class SupportTeam {
         temp.TransferXpHouse(User,amount,odds);
         
     }
+
+    SupportTeam(String id, String Pid, double amount) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

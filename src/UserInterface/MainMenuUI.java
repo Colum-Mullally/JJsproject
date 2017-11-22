@@ -96,7 +96,7 @@ public class MainMenuUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here
-        SupportUI temp= new SupportUI();
+        SupportUI temp= new SupportUI(username);
         temp.setVisible(true);
         dispose();
         

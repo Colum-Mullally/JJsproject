@@ -5,20 +5,35 @@
  */
 package SupportController;
 
+import DatabaseController.PlayerDB;
+import DatabaseController.TeamDB;
+
 /**
  *
  * @author Colum
  */
 public class Support {
-    private int id;
+    private String id;
     private String Pid;
     private double amount;
-    Support(int id,String Pid,double amount){
-        this.id=id;
-        this.Pid=Pid;
-        this.amount=amount;
+    Support(String id,String Pid){
+ 
         
     }
+
+    public Support(String username) {
+        id=username;
+    }
+   public String[][] getAllPlayers(){
+       PlayerDB temp= new PlayerDB();
+       return temp.showAllPlayers();
+       
+   }
+   public String[][] getAllTeams(){
+       TeamDB temp= new TeamDB();
+       return temp.showAllTeams();
+       
+   }
     void Selection(int choice){
         if (choice==1)
         {
