@@ -20,8 +20,11 @@ public class AccountDB {
         boolean out = ds.check(username, password);
         return out;
     }
+    public void update(String username,double balance){
+        ds.updateAccount(username, balance);
+    }
     
-    public Account getAccount(int id){
+    public Account getAccount(String id){
         return ds.getAccount(id);
     }
 }

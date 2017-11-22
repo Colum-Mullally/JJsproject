@@ -12,7 +12,7 @@ package MachineLearningOpinion;
 public class OpinionCalculator {
     private double randomNum ;
     public OpinionCalculator(){
-    randomNum = (double)(Math.random() *1);
+    randomNum = (double)(Math.random()*99+1);
     }
     public double getOpinionValue(){
       return randomNum;  

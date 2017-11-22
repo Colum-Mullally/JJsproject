@@ -10,7 +10,7 @@ import AccountManager.Account;
 
 public interface DataSuper {
 
-    Account getAccount(int id);
+    Account getAccount(String id);
 
     boolean check(String username, String password);
 
@@ -33,5 +33,7 @@ public interface DataSuper {
     Team getTeam(String name);
 
     void update(String name, double odds, String tname);
+
+    public void updateAccount(String username, double balance);
     
 }

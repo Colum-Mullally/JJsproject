@@ -16,12 +16,12 @@ import DatabaseController.TeamDB;
  */
 public class SupportTeam {
 
-    private int id;
+    private String id;
     private double amount;
     private Account User;
     private TeamDB database;
     Team team;
-    SupportTeam(int id,String pid, double amount) {
+    SupportTeam(String id,String pid, double amount) {
         this.id=id;
         this.amount=amount;
         database= new TeamDB();
@@ -32,11 +32,5 @@ public class SupportTeam {
         User.deductXP(amount);
         House temp= new House();
         temp.TransferXpHouse(User,amount,odds);
-        
     }
-
-    SupportTeam(String id, String Pid, double amount) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

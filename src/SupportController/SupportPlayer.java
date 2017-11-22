@@ -13,13 +13,13 @@ import DatabaseController.PlayerDB;
  * @author Colum
  */
 public class SupportPlayer {
-    private int id;
+    private String id;
     private double amount;
     private Account user;
     private PlayerDB database;
     Player player;
     SupportPlayer(String name,String pname ,double amount) {
-        this.id=id;
+        this.id=name;
         this.amount=amount;
         AccountDB holder=new AccountDB();
         user=holder.getAccount(id);

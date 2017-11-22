@@ -33,7 +33,7 @@ public class DBParser implements DataSuper{
   
   public boolean check(String u, String p){
       try {
-      ResultSet resultSet = DBConnector.getInstance().getResultSet("select uname, password from "+dbName+".users where uname = '"+u+"'");
+      ResultSet resultSet = DBConnector.getInstance().execute("select uname, password from "+dbName+".users where uname = '"+u+"'");
         if(resultSet.next()){
             String u2 = resultSet.getString("uname");
             String p2 = resultSet.getString("password");
@@ -54,16 +54,18 @@ public class DBParser implements DataSuper{
   public String[][] getAllTeams(){
       try {
         ArrayList<String[]> arr = new ArrayList<String[]>();
-        String[] sArr = new String[2];
-        ResultSet resultSet = DBConnector.getInstance().getResultSet("select odds, teamname from "+dbName+".teams");
+        ResultSet resultSet = DBConnector.getInstance().execute("select odds, teamname from "+dbName+".teams");
         while(resultSet.next()){
+            String[] sArr = new String[2];
             sArr[0] = resultSet.getString("teamname");
             sArr[1] = ""+resultSet.getDouble("odds");
+            arr.add(sArr);
         }
         String[][] out = new String[arr.size()][2];
         for(int i = 0; i < arr.size(); i++){
            out[i][0] = arr.get(i)[0];
            out[i][1] = arr.get(i)[1];
+          
         }
         return out;
     }
@@ -103,7 +105,7 @@ public class DBParser implements DataSuper{
   
   public void updateWins(String uname){
         try {
-            ResultSet rs = DBConnector.getInstance().getResultSet("Select wins from "+dbName+" where uname = '"+ uname+"';");
+            ResultSet rs = DBConnector.getInstance().execute("Select wins from "+dbName+" where uname = '"+ uname+"';");
             if(rs.next()){
                 int x = rs.getInt("wins");
                 preparedStatement = DBConnector.getInstance().getConnect().prepareStatement("UPDATE ?.users set wins = ? where uname = ?");
@@ -128,12 +130,12 @@ public class DBParser implements DataSuper{
   
   public String[][] getPreviousBets(String uname){
   try{
-        ResultSet resultSet = DBConnector.getInstance().getResultSet("select BetID, amount, team, winner from "+dbName+".placed_bets where uname = '"+uname+"';");
+        ResultSet resultSet = DBConnector.getInstance().execute("select BetID, amount, team, winner from "+dbName+".placed_bets where uname = '"+uname+"';");
          ArrayList<String[]> arr = new ArrayList<String[]>();
         String[] sArr = new String[5];
         while(resultSet.next()){
             int x = resultSet.getInt("BetID");
-            ResultSet rs = DBConnector.getInstance().getResultSet("select team1, team2 from "+dbName+".bets where BetID = '"+x+"';");
+            ResultSet rs = DBConnector.getInstance().execute("select team1, team2 from "+dbName+".bets where BetID = '"+x+"';");
             sArr[0] = rs.getString("team1");
             sArr[1] = rs.getString("team2");
             sArr[2] = ""+resultSet.getInt("amount");
@@ -219,9 +221,9 @@ public class DBParser implements DataSuper{
         }
     }
 
-    public Account getAccount(int id) {
+    public Account getAccount(String id) {
         try {
-            ResultSet rs = DBConnector.getInstance().getResultSet("Select Bal, Uname from "+dbName+".users where ID = '"+id+"';");
+            ResultSet rs = DBConnector.getInstance().execute("Select Bal, Uname from "+dbName+".users where Uname= '"+id+"';");
             if(rs.next()){
                 Double xp = rs.getDouble("Bal");
                 String username = rs.getString("Uname");
@@ -268,11 +270,12 @@ public class DBParser implements DataSuper{
     public String[][] getAllPlayers() {
     try {
         ArrayList<String[]> arr = new ArrayList<String[]>();
-        String[] sArr = new String[2];
-        ResultSet resultSet = DBConnector.getInstance().getResultSet("select odds, name from "+dbName+".players");
+        ResultSet resultSet = DBConnector.getInstance().execute("select odds, name from "+dbName+".players");
         while(resultSet.next()){
+            String[] sArr = new String[2];
             sArr[0] = resultSet.getString("name");
             sArr[1] = ""+resultSet.getDouble("odds");
+            arr.add(sArr);
         }
         String[][] out = new String[arr.size()][2];
         for(int i = 0; i < arr.size(); i++){
@@ -291,7 +294,8 @@ public class DBParser implements DataSuper{
 
     public Player getPlayer(String name) {
     try {
-        ResultSet resultSet = DBConnector.getInstance().getResultSet("select name, odds from "+dbName+".players where name = '"+name+"';");
+        System.out.println(name);
+        ResultSet resultSet = DBConnector.getInstance().execute("select id, odds from "+dbName+".players where name = '"+name+"';");
         int id = 0;
         Double odds = null;
         if(resultSet.next()){
@@ -299,10 +303,9 @@ public class DBParser implements DataSuper{
             odds = resultSet.getDouble("odds");
         }
         return new Player(id, odds, name);
-        
         }
         catch(Exception e){
-            System.out.println("Error");
+            System.out.println(e.toString());
             return new Player(0, 0, "Error");
         }
     }
@@ -310,14 +313,14 @@ public class DBParser implements DataSuper{
     public Team getTeam(String name) {
         try {
         ArrayList<Player> arr = new ArrayList<Player>();
-        ResultSet resultSet = DBConnector.getInstance().getResultSet("select id, odds from "+dbName+".teams where Team_Name = '"+name+"';");
+        ResultSet resultSet = DBConnector.getInstance().execute("select id, odds from "+dbName+".teams where Team_Name = '"+name+"';");
         int id = 0;
         Double odds = null;
         if(resultSet.next()){
             id  = resultSet.getInt("id");
             odds = resultSet.getDouble("odds");
         }
-        resultSet = DBConnector.getInstance().getResultSet("select id, name, odds from "+dbName+".players where team_name = '"+name+"';");
+        resultSet = DBConnector.getInstance().execute("select id, name, odds from "+dbName+".players where team_name = '"+name+"';");
         String pname;
         Double podds;
         int pid;
@@ -337,6 +340,26 @@ public class DBParser implements DataSuper{
         catch(Exception e){
             System.out.println("Error");
             return null;
+        }
+    }
+
+    @Override
+    public void updateAccount(String username, double balance) {
+        try {
+            ResultSet rs = DBConnector.getInstance().execute("Select uname from "+dbName+".users where uname = '"+username+"';");
+            if(rs.next()){
+                preparedStatement = DBConnector.getInstance().getConnect().prepareStatement("UPDATE "+dbName+".users set bal = ? where uname = ?");
+                preparedStatement.setDouble(1, balance);
+                preparedStatement.setString(2, username);
+                DBConnector.getInstance().execute(preparedStatement);
+            }
+            else{
+              System.out.println("Error Account not found!!");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBParser.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(DBParser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

@@ -16,28 +16,29 @@ import javax.swing.JList;
 public class SupportUI extends javax.swing.JFrame {
 
     private String username;
-
+     String[][] pList;
+     String[][] tList;
+     Support control;
     /**
      * Creates new form Support
      */
     public SupportUI(String username) {
         this.username=username;
-        Support control= new Support(username);
-        String[][] pList=control.getAllPlayers();
-        String[][] tList=control.getAllTeams();
+        control= new Support(username);
+        pList=control.getAllPlayers();
+        tList=control.getAllTeams();
         String lie;
-        for(int i = 0; i < pList[0].length; i++){
+        for(int i =0; i <pList.length; i++){
             lie=pList[i][0]+pList[i][1];
-             DefaultListModel demoList = new DefaultListModel();
-             demoList.addElement(lie);
-            jList=new JList(demoList);
+            System.out.println(lie);
+             model.addElement(lie);
         }
-        for(int i = 0; i < tList[0].length; i++){
+        for(int i = 0; i <tList.length; i++){
             lie=tList[i][0]+tList[i][1];
-             DefaultListModel demoList = new DefaultListModel();
-             demoList.addElement(lie);
-            jList=new JList(demoList);
+            System.out.println(lie);
+             model.addElement(lie);
         }
+        jList=new JList(model);
         initComponents();
     }
 
@@ -53,7 +54,6 @@ public class SupportUI extends javax.swing.JFrame {
         supportButton = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        model = new DefaultListModel<>();
         jList = new javax.swing.JList<>(model);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -112,15 +112,38 @@ public class SupportUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void supportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supportButtonActionPerformed
-        // TODO add your handling code here:
+        double amount;
+        try{
+            amount=Double.parseDouble(jTextField1.getText());
+        }catch(Exception e){
+            amount=0;
+        }
+        
+         int idx = jList.getSelectedIndex();
+        if (idx != -1){
+          if(idx>=pList.length)
+          { 
+             
+              control.set(tList[idx-pList.length][0],amount);
+              control.selection(2);
+          }
+          else{
+              control.set(pList[idx][0],amount);
+              control.selection(1);
+          }
+        }
+          else{
+          
+        }
     }//GEN-LAST:event_supportButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    DefaultListModel<String> model;
+    DefaultListModel<String> model= new DefaultListModel<>();
     private javax.swing.JList<String> jList;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton supportButton;
     // End of variables declaration//GEN-END:variables
+
 }

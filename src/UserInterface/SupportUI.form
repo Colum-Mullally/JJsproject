@@ -82,8 +82,7 @@
         <Component class="javax.swing.JList" name="jList">
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JList&lt;&gt;(model)"/>
-            <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="model = new DefaultListModel&lt;&gt;();"/>
-            <AuxValue name="JavaCodeGenerator_DeclarationPre" type="java.lang.String" value="DefaultListModel&lt;String&gt; model;"/>
+            <AuxValue name="JavaCodeGenerator_DeclarationPre" type="java.lang.String" value="DefaultListModel&lt;String&gt; model= new DefaultListModel&lt;&gt;();"/>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>

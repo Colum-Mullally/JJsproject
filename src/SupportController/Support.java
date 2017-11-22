@@ -34,10 +34,14 @@ public class Support {
        return temp.showAllTeams();
        
    }
-    void Selection(int choice){
+    public void set(String Pid,double amount){
+     this.Pid=Pid;
+     this.amount=amount;
+    } 
+    public void selection(int choice){
         if (choice==1)
         {
-            SupportPlayer temp=new SupportPlayer(id,id,amount);
+            SupportPlayer temp=new SupportPlayer(id,Pid,amount);
         }
         else if(choice==2)
         {

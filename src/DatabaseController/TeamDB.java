@@ -27,10 +27,12 @@ public class TeamDB {
     
     public String[][] showAllTeams()
     {
+        
         try {
             String[][] out = ds.getAllTeams();
             return out;
         } catch (Exception ex) {
+            
             Logger.getLogger(TeamDB.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;

@@ -6,12 +6,13 @@
 package SupportController;
 
 import AccountManager.Account;
+import DatabaseController.ResultDB;
 
 /**
  *
  * @author Colum
  */
-public class House {
+public class House extends Observer{
 
    private double amount,odds;
    private Account user;
@@ -19,8 +20,11 @@ public class House {
         this.amount=amount;
         this.odds=odds;
         this.user=user;
+        this.house = new ResultDB();
+        this.house.attach(this);
+        
     }
-    void Pay(){
+    public void pay(){
         user.add(amount*odds);
     }
 }

@@ -6,6 +6,7 @@
 package AccountManager;
 
 import AccountManager.Account;
+import DatabaseController.AccountDB;
 
 public class BronzeUser implements Account{
     String userName;
@@ -26,17 +27,23 @@ public class BronzeUser implements Account{
 
     public void deductXP(double amount) {
         balance-=amount;
+        update();
     }
 
 
     @Override
     public void add(double amount) {
         balance+=amount;
+        update();
     }
 
     @Override
     public String Uname() {
         return userName;
+    }
+    
+    public void update(){
+        new AccountDB().update(userName, balance);
     }
     
     
