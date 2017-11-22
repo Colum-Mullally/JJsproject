@@ -15,19 +15,24 @@ import MachineLearningOpinion.OpinionCalculator;
  */
 public class OddsCalculator {
 
+    public OddsCalculator(){
+        
+    }
+    
     public OddsCalculator(String name, double outcomeS) {
-        OpinionCalculator cal=new OpinionCalculator();
-        double teamProb=outcomeS/cal.getOpinionValue();
          TeamDB temp =new TeamDB();
-        temp.update(name,teamProb);
+        temp.update(name,getOdds(outcomeS));
         
     }
 
     public OddsCalculator(String name, double outcomeS, String Tname) {
-        OpinionCalculator cal=new OpinionCalculator();
-        double PlayerProb=outcomeS/cal.getOpinionValue();
         PlayerDB temp =new PlayerDB();
-        temp.update(name,PlayerProb,Tname);
+        temp.update(name,getOdds(outcomeS),Tname);
     }
     
+    public double getOdds(double outcomeS){
+        OpinionCalculator cal=new OpinionCalculator();
+        double playerProb=outcomeS/cal.getOpinionValue();
+        return playerProb;
+    }
 }
