@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  *
  * @author jakec
  */
-public class DBParser extends DataSuper{
+public class DBParser implements DataSuper{
     
     private String dbName = "stropse_no_elbmag";
     private PreparedStatement preparedStatement;
@@ -161,7 +161,7 @@ public class DBParser extends DataSuper{
       }
   }
 
-    void update(String name, double odds) {
+    public void update(String name, double odds) {
         try {
             ResultSet rs = DBConnector.getInstance().execute("Select TeamName from "+dbName+".teams where TeamName = '"+name+"';");
             if(rs.next()){
@@ -191,7 +191,7 @@ public class DBParser extends DataSuper{
         }
     }
 
-    boolean addUser(String userName, String password, String email) {
+    public boolean addUser(String userName, String password, String email) {
         
         try {
             preparedStatement = DBConnector.getInstance().getConnect().prepareStatement("insert into "+dbName+".users (uname, password, email ,Bal) values ( ?, ?, ?, ?)");
@@ -219,7 +219,7 @@ public class DBParser extends DataSuper{
         }
     }
 
-    Account getAccount(int id) {
+    public Account getAccount(int id) {
         try {
             ResultSet rs = DBConnector.getInstance().getResultSet("Select Bal, Uname from "+dbName+".users where ID = '"+id+"';");
             if(rs.next()){
@@ -234,7 +234,7 @@ public class DBParser extends DataSuper{
         return null;
     }
 
-    void update(String name, double odds, String tname) {
+    public void update(String name, double odds, String tname) {
         try {
                 ResultSet rs = DBConnector.getInstance().execute("Select name from "+dbName+".players where name = '"+name+"';");
                 if(rs.next()){
@@ -265,7 +265,7 @@ public class DBParser extends DataSuper{
         }
     }
 
-    String[][] getAllPlayers() {
+    public String[][] getAllPlayers() {
     try {
         ArrayList<String[]> arr = new ArrayList<String[]>();
         String[] sArr = new String[2];
@@ -289,7 +289,7 @@ public class DBParser extends DataSuper{
         }
     }
 
-    Player getPlayer(String name) {
+    public Player getPlayer(String name) {
     try {
         ResultSet resultSet = DBConnector.getInstance().getResultSet("select name, odds from "+dbName+".players where name = '"+name+"';");
         int id = 0;
@@ -307,7 +307,7 @@ public class DBParser extends DataSuper{
         }
     }
 
-    Team getTeam(String name) {
+    public Team getTeam(String name) {
         try {
         ArrayList<Player> arr = new ArrayList<Player>();
         ResultSet resultSet = DBConnector.getInstance().getResultSet("select id, odds from "+dbName+".teams where Team_Name = '"+name+"';");
