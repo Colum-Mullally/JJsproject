@@ -13,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -360,6 +362,34 @@ public class DBParser implements DataSuper{
             Logger.getLogger(DBParser.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
             Logger.getLogger(DBParser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void placebet(Account user, double amount, double odds) {
+                
+        try {
+            preparedStatement = DBConnector.getInstance().getConnect().prepareStatement("insert into "+dbName+".house (uname,dates, amount ,odds) values ( ?, ?, ?, ?)");
+            
+            preparedStatement.setString(1, user.Uname());
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            Date date = new Date();
+            preparedStatement.setDate(2, (java.sql.Date) date);
+            preparedStatement.setDouble(3, amount);
+            preparedStatement.setDouble(4, odds);
+            
+            DBConnector.getInstance().execute(preparedStatement);
+        } catch (SQLException ex) {
+            Logger.getLogger(DBParser.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(DBParser.class.getName()).log(Level.SEVERE, null, ex);     
+        }
+        finally{
+            try {
+                preparedStatement.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DBParser.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }
