@@ -25,7 +25,6 @@ public class LeaderboardUI extends javax.swing.JFrame {
     }
     void getUsers(){
         LeaderBoard l = new LeaderBoard();
-        System.out.println("uhsdfo");
         String[][] uArr = l.getUsers();
         setUsers(uArr);
     }
