@@ -374,7 +374,8 @@ public class DBParser implements DataSuper{
             preparedStatement.setString(1, user.Uname());
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             Date date = new Date();
-            preparedStatement.setDate(2, (java.sql.Date) date);
+            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+            preparedStatement.setDate(2, sqlDate);
             preparedStatement.setDouble(3, amount);
             preparedStatement.setDouble(4, odds);
             
