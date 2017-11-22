@@ -16,12 +16,28 @@ import javax.swing.JList;
  */
 public class ViewUpcomingGameUI extends javax.swing.JFrame {
 
+    boolean logged = false;
     /**
+     * 
      * Creates new form ViewUpcomingGame
      */
     String username;
     public ViewUpcomingGameUI(String username) {
+        logged = true;
         this.username=username;
+        ViewUpcomingGames temp = new ViewUpcomingGames();
+        ArrayList<String[]> fList = temp.getFixture();
+        String lie;
+        for(int i = 0; i < fList.size(); i++){
+            lie= (fList.get(i)[0]+ "vs" +fList.get(i)[1]+ "on the" +fList.get(i)[2]);
+             DefaultListModel demoList = new DefaultListModel();
+             demoList.addElement(lie);
+            jList1=new JList(demoList);
+        }
+        initComponents();
+    }
+
+    ViewUpcomingGameUI() {
         ViewUpcomingGames temp = new ViewUpcomingGames();
         ArrayList<String[]> fList = temp.getFixture();
         String lie;
@@ -91,7 +107,16 @@ public class ViewUpcomingGameUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        if(logged){
+            MainMenuUI temp = new MainMenuUI(username);
+            temp.setVisible(true);
+            dispose();
+        }
+        else{
+            guestMenu temp = new guestMenu();
+            temp.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

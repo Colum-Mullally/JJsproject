@@ -17,6 +17,12 @@ import javax.swing.JList;
 public class LeaderboardUI extends javax.swing.JFrame {
     
     String username;
+    Boolean logged = false;
+
+    LeaderboardUI() {
+        getUsers();
+        initComponents();
+    }
     void getUsers(){
         LeaderBoard l = new LeaderBoard();
         System.out.println("uhsdfo");
@@ -32,6 +38,7 @@ public class LeaderboardUI extends javax.swing.JFrame {
     }
     public LeaderboardUI(String username) {
         this.username= username;
+        logged = true;
         getUsers();
         initComponents();
     }
@@ -87,9 +94,16 @@ public class LeaderboardUI extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        MainMenuUI temp =new MainMenuUI(username);
-        temp.setVisible(true);
-        dispose();
+        if(logged){
+            MainMenuUI temp = new MainMenuUI(username);
+            temp.setVisible(true);
+            dispose();
+        }
+        else{
+            guestMenu temp = new guestMenu();
+            temp.setVisible(true);
+            dispose();
+        }
     }                                          
 
 
