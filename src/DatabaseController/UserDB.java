@@ -5,10 +5,6 @@
  */
 package DatabaseController;
 
-/**
- *
- * @author Jack
- */
 public class UserDB {
     private DataMapper dm = new DataMapper();
     private DataSuper ds;

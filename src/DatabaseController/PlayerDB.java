@@ -4,10 +4,6 @@
  * and open the template in the editor.
  */
 package DatabaseController;
-/**
- *
- * @author Jack
- */
 public class PlayerDB {
 
     private DataMapper dm = new DataMapper();

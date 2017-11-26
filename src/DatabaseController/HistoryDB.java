@@ -6,11 +6,6 @@
 package DatabaseController;
 
 import AccountManager.Account;
-
-/**
- *
- * @author Jack
- */
 public class HistoryDB {private DataMapper dm = new DataMapper();
     private DataSuper ds;
     

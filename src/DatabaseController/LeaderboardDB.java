@@ -4,11 +4,6 @@
  * and open the template in the editor.
  */
 package DatabaseController;
-
-/**
- *
- * @author Jack
- */
 public class LeaderboardDB {
     private DataMapper dm = new DataMapper();
     private DataSuper ds;
