@@ -12,20 +12,14 @@ import DatabaseController.AccountDB;
  *
  * @author Colum
  */
+
 public class ViewStats {
-    private double balance;
-    private String uName;
-    public ViewStats(int id){
-        Account account= new AccountDB().getAccount(uName);
-        balance=account.balance();
-        uName=account.Uname();
-        
+    String Stats;
+    public ViewStats(String username) {
+        AccountDB temp = new AccountDB();
+     Stats = temp.getStats(username);
     }
-    public double getBalance()
-    {
-        return balance;
-    }
-    public String getUname(){
-        return uName;
+    public  String getstats(){
+        return Stats;
     }
 }

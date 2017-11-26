@@ -37,5 +37,7 @@ public interface DataSuper {
     public void updateAccount(String username, double balance);
 
     public void placebet(Account user, double amount, double odds);
+
+    public String getStats(String id);
     
 }

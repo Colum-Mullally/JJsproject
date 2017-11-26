@@ -12,17 +12,12 @@ import Controllers.ViewStats;
  * @author Colum
  */
 public class ViewStatsUI extends javax.swing.JFrame {
-
-    /**
-     * Creates new form ViewStats
-     */
-    public ViewStatsUI() {
-        int id=0;
-        ViewStats con= new ViewStats(id);
-        double balance= con.getBalance();
-        String Uname= con.getUname();
-        jLabel2.setText(""+con);
-        jLabel1.setText(Uname);
+    String username;
+    ViewStats con;
+    ViewStatsUI(String username) {
+        this.username=username;
+       con= new ViewStats(username);
+        System.out.print(con.getstats());
         initComponents();
     }
 
@@ -35,46 +30,40 @@ public class ViewStatsUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("jLabel1");
-
-        jLabel2.setText("jLabel2");
-
-        jButton2.setText("jButton2");
+        jButton2.setText("Back");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
+        jLabel2.setText(con.getstats());
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(109, 109, 109))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(136, 136, 136)
-                .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(136, 136, 136)
+                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(167, 167, 167)
+                        .addComponent(jLabel2)))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(134, 134, 134)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addContainerGap(113, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(89, 89, 89)
                 .addComponent(jButton2)
                 .addGap(57, 57, 57))
         );
@@ -84,12 +73,14 @@ public class ViewStatsUI extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+          MainMenuUI temp = new MainMenuUI(username);
+            temp.setVisible(true);
+            dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
