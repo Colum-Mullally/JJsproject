@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Colum
+ * @author Jack
  */
 public class RegisterUI extends javax.swing.JFrame {
 
@@ -100,6 +100,7 @@ public class RegisterUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        //Register button
         String username = jTextField1.getText();
         String password = new String(jPasswordField1.getPassword());
         String email = jTextField2.getText();
