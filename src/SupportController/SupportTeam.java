@@ -31,6 +31,6 @@ public class SupportTeam {
         User=holder.getAccount(id);
         User.deductXP(amount);
         House temp= new House();
-        temp.TransferXpHouse(User,amount,odds);
+        temp.TransferXpHouse(User,amount,odds,pid);
     }
 }

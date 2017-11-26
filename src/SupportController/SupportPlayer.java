@@ -28,6 +28,6 @@ public class SupportPlayer {
         double odds=player.getPlayerOdds();
         user.deductXP(amount);
         House temp= new House();
-        temp.TransferXpHouse(user,amount,odds);
+        temp.TransferXpHouse(user,amount,odds,pname);
     }
 }

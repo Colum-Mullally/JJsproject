@@ -414,4 +414,14 @@ public class DBParser implements DataSuper{
         }
          return ("unexpected error please try again later");
     }
+
+    @Override
+    public void closebet(Account user, double amount, double odds) {//removes bet from house db when the result has been parsed.
+        try {
+            String uname = user.Uname();
+            preparedStatement = DBConnector.getInstance().getConnect().prepareStatement("delete from"+dbName+".house (uname,dates, amount ,odds) where uname='"+uname+"'&&amount='"+amount+"'&& odds='"+odds+"';");
+        } catch (SQLException ex) {
+            Logger.getLogger(DBParser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

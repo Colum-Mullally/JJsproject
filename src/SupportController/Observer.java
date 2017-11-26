@@ -9,5 +9,5 @@ import DatabaseController.ResultDB;
 
 public abstract class Observer {
    protected ResultDB house;
-   public abstract void pay();
+   public abstract void pay(String winner);
 }

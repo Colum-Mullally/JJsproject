@@ -19,5 +19,9 @@ public class HistoryDB {private DataMapper dm = new DataMapper();
     public void placebet(Account user, double amount, double odds) {//Given the details, tells the dtabase to place a bet for a certain user.
       ds.placebet(user,amount,odds);
     }
+
+    public void closebet(Account user, double amount, double odds) {
+        ds.closebet(user,amount,odds);
+    }
     
 }

@@ -39,5 +39,7 @@ public interface DataSuper {
     public void placebet(Account user, double amount, double odds);
 
     public String getStats(String id);
+
+    public void closebet(Account user, double amount, double odds);
     
 }

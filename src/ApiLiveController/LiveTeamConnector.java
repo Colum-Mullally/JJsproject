@@ -9,6 +9,7 @@ import ApiRestConnector.RestPlayerConnector;
 import JsonResultParser.ResultParser;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,7 +39,16 @@ public class LiveTeamConnector {
         in.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(RestPlayerConnector.class.getName()).log(Level.SEVERE, null, ex);
-        }         
+        }      
+         PrintWriter Fprinter1;
+        try {
+            Fprinter1 = new PrintWriter(aFile);
+             Fprinter1.print("");
+             Fprinter1.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(LivePlayerConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+               
 }
     
 }

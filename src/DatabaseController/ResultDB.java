@@ -14,29 +14,29 @@ import java.util.List;
  */
 public class ResultDB {
    private final List<Observer> observers;
-   private int state;
+   private String state;
 
     public ResultDB() {
         this.observers = new ArrayList<Observer>();
         
     }
 
-   public int getState() {
+   public String getState() {
       return state;
    }
 
-   public void setState(int state) {
+   public void setState(String state) {
       this.state = state;
-      notifyAllObservers();
+      notifyAllObservers(state);
    }
 
    public void attach(Observer observer){
       observers.add(observer);		
    }
 
-   public void notifyAllObservers(){
+   public void notifyAllObservers(String Winner){
       for (Observer observer : observers) {
-         observer.pay();
+         observer.pay(Winner);
       }
    } 	
 }

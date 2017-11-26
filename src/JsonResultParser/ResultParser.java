@@ -5,6 +5,7 @@
  */
 package JsonResultParser;
 
+import DatabaseController.ResultDB;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -22,6 +23,9 @@ public class ResultParser {
        
     }
     public void parse(String lineFromFile) {
-        
+         String[] archive;
+        archive=lineFromFile.split(",");
+        ResultDB update= new ResultDB();
+        update.setState(archive[0]);
     }
 }

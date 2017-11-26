@@ -16,17 +16,22 @@ import DatabaseController.ResultDB;
 public class House extends Observer{
 
    private double amount,odds;
+   private String pid;
    private Account user;
- void TransferXpHouse(Account user,double amount, double odds) {
+   HistoryDB archive;
+ void TransferXpHouse(Account user,double amount, double odds,String pid) {
         this.amount=amount;
         this.odds=odds;
         this.user=user;
+        this.pid=pid;
         this.house = new ResultDB();
         this.house.attach(this);
-        HistoryDB archive=new HistoryDB();
+        archive=new HistoryDB();
         archive.placebet(user,amount,odds);
         }
-    public void pay(){//Pays out a certain amount to a user
+    public void pay(String winner){//Pays out a certain amount to a user
+        if(winner==pid)
         user.add(amount*odds);
+        archive.closebet(user,amount,odds);
     }
 }
