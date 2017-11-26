@@ -82,8 +82,8 @@ public class DBParser implements DataSuper{
       try{
         ResultSet resultSet = DBConnector.getInstance().execute("select Bal, uname from "+dbName+".users ORDER BY (Bal) ASC;");
          ArrayList<String[]> arr = new ArrayList<String[]>();
-        String[] sArr = new String[2];
         while(resultSet.next()){
+            String[] sArr = new String[2];
             sArr[0] = ""+resultSet.getDouble("Bal");
             sArr[1] = resultSet.getString("uname");
             arr.add(sArr);
@@ -419,7 +419,10 @@ public class DBParser implements DataSuper{
     public void closebet(Account user, double amount, double odds) {//removes bet from house db when the result has been parsed.
         try {
             String uname = user.Uname();
-            preparedStatement = DBConnector.getInstance().getConnect().prepareStatement("delete from"+dbName+".house (uname,dates, amount ,odds) where uname='"+uname+"'&&amount='"+amount+"'&& odds='"+odds+"';");
+            preparedStatement = DBConnector.getInstance().getConnect().prepareStatement("delete from"+dbName+".house (uname,dates, amount ,odds) where uname=? &&amount=?&& odds=?;");
+            preparedStatement.setString(1, uname);
+            preparedStatement.setDouble(2, amount);
+            preparedStatement.setDouble(3, odds);
         } catch (SQLException ex) {
             Logger.getLogger(DBParser.class.getName()).log(Level.SEVERE, null, ex);
         }

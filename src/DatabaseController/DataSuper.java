@@ -20,12 +20,10 @@ public interface DataSuper {
 
     Player getPlayer(String name);
     
-
     String[][] getAllPlayers();
 
     String[][] getAllTeams();
-
-
+    
     void update(String name, double odds);
 
     boolean addUser(String userName, String password, String email);
