@@ -106,7 +106,7 @@ public class MainMenuUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here
+        //Support Button
         SupportUI temp= new SupportUI(username);
         temp.setVisible(true);
         dispose();
@@ -114,28 +114,28 @@ public class MainMenuUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        //Login Button
         LoginUI temp=new LoginUI();
         temp.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-            // TODO add your handling code here:
+        //View Upcoming Games Button
         ViewUpcomingGameUI temp = new ViewUpcomingGameUI(username);
         temp.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        //Leaderboard Button
         LeaderboardUI temp = new LeaderboardUI(username);
         temp.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        //View stats Button
         ViewStatsUI temp = new ViewStatsUI(username);
         temp.setVisible(true);
         dispose();

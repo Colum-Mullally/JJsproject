@@ -45,7 +45,7 @@ public class SilverUser extends AccountDecorator{
         return userName;
     }
     
-    public void update(){
+    public void update(){//Updates the database with the new details.
         new AccountDB().update(userName, balance);
     }
     

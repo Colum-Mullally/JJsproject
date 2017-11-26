@@ -26,7 +26,7 @@ public class House extends Observer{
         HistoryDB archive=new HistoryDB();
         archive.placebet(user,amount,odds);
         }
-    public void pay(){
+    public void pay(){//Pays out a certain amount to a user
         user.add(amount*odds);
     }
 }

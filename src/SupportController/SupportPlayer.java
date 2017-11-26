@@ -18,7 +18,7 @@ public class SupportPlayer {
     private Account user;
     private PlayerDB database;
     Player player;
-    SupportPlayer(String name,String pname ,double amount) {
+    SupportPlayer(String name,String pname ,double amount) {//Handles a bet on a player
         this.id=name;
         this.amount=amount;
         AccountDB holder=new AccountDB();

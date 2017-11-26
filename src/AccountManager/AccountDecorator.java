@@ -9,7 +9,7 @@ package AccountManager;
  *
  * @author Colum
  */
-public abstract class AccountDecorator implements Account {
+public abstract class AccountDecorator implements Account {//Decorator base class
     protected Account decoratedAccount;
     public AccountDecorator(Account decoratedAccount)
     {

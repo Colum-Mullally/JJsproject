@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  * @author Colum
  */
 public class RestTeamConnector {
-    public RestTeamConnector() {
+    public RestTeamConnector() {//Gets the teams and adds them to the database.
          //switched to csv
         String filename="Team.csv";
         String lineFromFile="";

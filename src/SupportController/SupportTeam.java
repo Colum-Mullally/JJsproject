@@ -21,7 +21,7 @@ public class SupportTeam {
     private Account User;
     private TeamDB database;
     Team team;
-    SupportTeam(String id,String pid, double amount) {
+    SupportTeam(String id,String pid, double amount) {//Handles a bet on a team
         this.id=id;
         this.amount=amount;
         database= new TeamDB();

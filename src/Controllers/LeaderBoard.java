@@ -11,7 +11,7 @@ import DatabaseController.LeaderboardDB;
  *
  * @author Colum
  */
-public class LeaderBoard {
+public class LeaderBoard {//A go-between for the UI and the database package.
     
     public String[][] getUsers(){
         LeaderboardDB lDB = new LeaderboardDB();

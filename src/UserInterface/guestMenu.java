@@ -27,38 +27,38 @@ public class guestMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
+        leaderboardButton = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         regBtn = new javax.swing.JButton();
         logbtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton2.setText("LeaderBoard");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+        leaderboardButton.setText("LeaderBoard");
+        leaderboardButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                leaderboardButtonMouseClicked(evt);
             }
         });
 
         jButton4.setText("View UpComing Game");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
             }
         });
 
         regBtn.setText("Register");
-        regBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                regBtnActionPerformed(evt);
+        regBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                regBtnMouseClicked(evt);
             }
         });
 
         logbtn.setText("Login");
-        logbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logbtnActionPerformed(evt);
+        logbtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logbtnMouseClicked(evt);
             }
         });
 
@@ -71,7 +71,7 @@ public class guestMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(regBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(leaderboardButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(logbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(141, Short.MAX_VALUE))
         );
@@ -81,7 +81,7 @@ public class guestMenu extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(logbtn)
                 .addGap(39, 39, 39)
-                .addComponent(jButton2)
+                .addComponent(leaderboardButton)
                 .addGap(33, 33, 33)
                 .addComponent(jButton4)
                 .addGap(31, 31, 31)
@@ -92,39 +92,38 @@ public class guestMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        LeaderboardUI temp = new LeaderboardUI();
-        temp.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        ViewUpcomingGameUI temp = new ViewUpcomingGameUI();
-        temp.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void regBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regBtnActionPerformed
-        // TODO add your handling code here:
-        RegisterUI temp=new RegisterUI();
-        temp.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_regBtnActionPerformed
-
-    private void logbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logbtnActionPerformed
-        // TODO add your handling code here
+    private void logbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logbtnMouseClicked
+        //Login Button
         LoginUI temp= new LoginUI();
         temp.setVisible(true);
         dispose();
+    }//GEN-LAST:event_logbtnMouseClicked
 
-    }//GEN-LAST:event_logbtnActionPerformed
+    private void regBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regBtnMouseClicked
+        //Register Button
+        RegisterUI temp=new RegisterUI();
+        temp.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_regBtnMouseClicked
+
+    private void leaderboardButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_leaderboardButtonMouseClicked
+        //Leaderboard Button
+        LeaderboardUI temp = new LeaderboardUI();
+        temp.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_leaderboardButtonMouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        //View Upcoming Games Button
+        ViewUpcomingGameUI temp = new ViewUpcomingGameUI();
+        temp.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton4MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton leaderboardButton;
     private javax.swing.JButton logbtn;
     private javax.swing.JButton regBtn;
     // End of variables declaration//GEN-END:variables

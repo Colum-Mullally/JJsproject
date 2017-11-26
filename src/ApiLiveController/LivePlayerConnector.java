@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  * @author Colum
  */
 public class LivePlayerConnector {
-    public LivePlayerConnector(){
+    public LivePlayerConnector(){//Gets the players currently playing.
          //switched to csv
         String filename="PlayerR.csv";
         String lineFromFile="";

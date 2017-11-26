@@ -16,19 +16,19 @@ public class PlayerDB {
     public PlayerDB(){
         ds = dm.getParserType();
     }
-    public Player getPlayer(String id)
+    public Player getPlayer(String id)//Gets a player from the database given their id.
     {
         Player out = ds.getPlayer(id);
         return out;
     }
     
-    public String[][] showAllPlayers()
+    public String[][] showAllPlayers()//Gets a two-dimensional array containing all players.
     {
         String[][] out = ds.getAllPlayers();
         return out;
     }
     
-    public void update(String name, double odds, String tname)
+    public void update(String name, double odds, String tname)//Tells the database to add a new player.
     {
         ds.update(name, odds, tname);
     }

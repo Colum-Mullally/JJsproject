@@ -11,7 +11,7 @@ package AccountManager;
  */
 public class AccountFactory {
     
-    public Account getAccount(String name, double balance){
+    public Account getAccount(String name, double balance){//Decides which kind of account a given user has.
         if(balance < 500){
             return new BronzeUser(name, balance);
         }

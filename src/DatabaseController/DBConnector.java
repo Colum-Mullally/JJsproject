@@ -20,7 +20,7 @@ public class DBConnector {
     private String dbName = "stropse_no_elbmag";
     private boolean connectionFlag = false;
 
-    public static synchronized DBConnector getInstance(){
+    public static synchronized DBConnector getInstance(){//Singleton stuff
         if(instance==null){
            instance = new DBConnector();
       }
@@ -33,7 +33,7 @@ public class DBConnector {
         
     }
     
-    public void connectDataBase(){
+    public void connectDataBase(){//Connects this instance to the actual database
         try{
                   
             
@@ -76,7 +76,7 @@ public class DBConnector {
         return connect;
     }
     
-    void execute(PreparedStatement ps) throws Exception{
+    void execute(PreparedStatement ps) throws Exception{//Executes a given statement
         if(!connectionFlag){
             connectDataBase();
         }
@@ -85,7 +85,7 @@ public class DBConnector {
         connectionFlag = false;
     }
     
-    ResultSet execute(String sqlStatement){
+    ResultSet execute(String sqlStatement){//Executes a given statement
         if(!connectionFlag)
             connectDataBase();
         ResultSet s = null;

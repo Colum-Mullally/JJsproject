@@ -33,7 +33,7 @@ public class DBParser implements DataSuper{
     }
     
   
-  public boolean check(String u, String p){
+  public boolean check(String u, String p){//Checks the username and password against the database.
       try {
       ResultSet resultSet = DBConnector.getInstance().execute("select uname, password from "+dbName+".users where uname = '"+u+"'");
         if(resultSet.next()){
@@ -53,7 +53,7 @@ public class DBParser implements DataSuper{
     }
   }
   
-  public String[][] getAllTeams(){
+  public String[][] getAllTeams(){//Gets a list of all the teams in a two-dimensional array.
       try {
         ArrayList<String[]> arr = new ArrayList<String[]>();
         ResultSet resultSet = DBConnector.getInstance().execute("select odds, teamname from "+dbName+".teams");
@@ -78,7 +78,7 @@ public class DBParser implements DataSuper{
     }
   }
   
-  public String[][] getLeaderboard(){
+  public String[][] getLeaderboard(){//Gets a leaderboard and returns it as a two-dimensional array.
       try{
         ResultSet resultSet = DBConnector.getInstance().execute("select Bal, uname from "+dbName+".users ORDER BY (Bal) ASC;");
          ArrayList<String[]> arr = new ArrayList<String[]>();
@@ -105,7 +105,7 @@ public class DBParser implements DataSuper{
       }
   }
   
-  public void updateWins(String uname){
+  public void updateWins(String uname){//Updates the recorded wins for a certain user.
         try {
             ResultSet rs = DBConnector.getInstance().execute("Select wins from "+dbName+" where uname = '"+ uname+"';");
             if(rs.next()){
@@ -130,7 +130,7 @@ public class DBParser implements DataSuper{
         }
   }
   
-  public String[][] getPreviousBets(String uname){
+  public String[][] getPreviousBets(String uname){//Gets a users previous bets
   try{
         ResultSet resultSet = DBConnector.getInstance().execute("select BetID, amount, team, winner from "+dbName+".placed_bets where uname = '"+uname+"';");
          ArrayList<String[]> arr = new ArrayList<String[]>();
@@ -165,7 +165,7 @@ public class DBParser implements DataSuper{
       }
   }
 
-    public void update(String name, double odds) {
+    public void update(String name, double odds) {//Either updates existing details for a team or adds a new one.
         try {
             ResultSet rs = DBConnector.getInstance().execute("Select TeamName from "+dbName+".teams where TeamName = '"+name+"';");
             if(rs.next()){
@@ -195,7 +195,7 @@ public class DBParser implements DataSuper{
         }
     }
 
-    public boolean addUser(String userName, String password, String email) {
+    public boolean addUser(String userName, String password, String email) {//Adds a user with the given details.
         
         try {
             preparedStatement = DBConnector.getInstance().getConnect().prepareStatement("insert into "+dbName+".users (uname, password, email ,Bal) values ( ?, ?, ?, ?)");
@@ -223,7 +223,7 @@ public class DBParser implements DataSuper{
         }
     }
 
-    public Account getAccount(String id) {
+    public Account getAccount(String id) {//Gets the account with the given id.
         try {
             ResultSet rs = DBConnector.getInstance().execute("Select Bal, Uname from "+dbName+".users where Uname= '"+id+"';");
             if(rs.next()){
@@ -238,7 +238,7 @@ public class DBParser implements DataSuper{
         return null;
     }
 
-    public void update(String name, double odds, String tname) {
+    public void update(String name, double odds, String tname) {//Either updates existing details for a player or adds a new one.
         try {
                 ResultSet rs = DBConnector.getInstance().execute("Select name from "+dbName+".players where name = '"+name+"';");
                 if(rs.next()){
@@ -269,7 +269,7 @@ public class DBParser implements DataSuper{
         }
     }
 
-    public String[][] getAllPlayers() {
+    public String[][] getAllPlayers() {//Returns a list of all players in a two-dimensional array.
     try {
         ArrayList<String[]> arr = new ArrayList<String[]>();
         ResultSet resultSet = DBConnector.getInstance().execute("select odds, name from "+dbName+".players");
@@ -294,7 +294,7 @@ public class DBParser implements DataSuper{
         }
     }
 
-    public Player getPlayer(String name) {
+    public Player getPlayer(String name) {//Gets the player with a given name.
     try {
         System.out.println(name);
         ResultSet resultSet = DBConnector.getInstance().execute("select id, odds from "+dbName+".players where name = '"+name+"';");
@@ -312,7 +312,7 @@ public class DBParser implements DataSuper{
         }
     }
 
-    public Team getTeam(String name) {
+    public Team getTeam(String name) {//Gets the team with a given name.
         try {
         ArrayList<Player> arr = new ArrayList<Player>();
         ResultSet resultSet = DBConnector.getInstance().execute("select id, odds from "+dbName+".teams where Team_Name = '"+name+"';");
@@ -346,7 +346,7 @@ public class DBParser implements DataSuper{
     }
 
     @Override
-    public void updateAccount(String username, double balance) {
+    public void updateAccount(String username, double balance) {//Updates the given account with a new balance
         try {
             ResultSet rs = DBConnector.getInstance().execute("Select uname from "+dbName+".users where uname = '"+username+"';");
             if(rs.next()){
@@ -366,7 +366,7 @@ public class DBParser implements DataSuper{
     }
 
     @Override
-    public void placebet(Account user, double amount, double odds) {
+    public void placebet(Account user, double amount, double odds) {//Places a bet of a certain amount at certain odds for a given user.
                 
         try {
             preparedStatement = DBConnector.getInstance().getConnect().prepareStatement("insert into "+dbName+".house (uname,dates, amount ,odds) values ( ?, ?, ?, ?)");
@@ -401,7 +401,7 @@ public class DBParser implements DataSuper{
     }
 
     @Override
-    public String getStats(String id) {
+    public String getStats(String id) {//Gets a given users stats.
         try {
             ResultSet rs = DBConnector.getInstance().execute("Select count(uname) AS count from "+dbName+".placedbets where uname = '"+id+"'&& amount>0;");
             if(rs.next()){

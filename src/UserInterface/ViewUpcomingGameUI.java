@@ -101,6 +101,7 @@ public class ViewUpcomingGameUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //Back Button
         if(logged){
             MainMenuUI temp = new MainMenuUI(username);
             temp.setVisible(true);

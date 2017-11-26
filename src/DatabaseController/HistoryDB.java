@@ -17,12 +17,11 @@ public class HistoryDB {private DataMapper dm = new DataMapper();
     public HistoryDB(){
         ds = dm.getParserType();
     }
-    public String[][] getHistory(String uname){
+    public String[][] getHistory(String uname){//Given a username, gets the users previous bets.
         return ds.getPreviousBets(uname);
-        
     }
 
-    public void placebet(Account user, double amount, double odds) {
+    public void placebet(Account user, double amount, double odds) {//Given the details, tells the dtabase to place a bet for a certain user.
       ds.placebet(user,amount,odds);
     }
     

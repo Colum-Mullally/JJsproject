@@ -17,8 +17,6 @@ public class Support {
     private String Pid;
     private double amount;
     Support(String id,String Pid){
- 
-        
     }
 
     public Support(String username) {
@@ -38,7 +36,7 @@ public class Support {
      this.Pid=Pid;
      this.amount=amount;
     } 
-    public void selection(int choice){
+    public void selection(int choice){//Supports either a team or a player depending on input
         if (choice==1)
         {
             SupportPlayer temp=new SupportPlayer(id,Pid,amount);

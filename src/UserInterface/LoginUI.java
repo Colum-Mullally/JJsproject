@@ -10,10 +10,11 @@ import ApiLiveController.LiveTeamConnector;
 import ApiRestConnector.RestPlayerConnector;
 import ApiRestConnector.RestTeamConnector;
 import LoginManager.Login;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author Colum
+ * @author Jack
  */
 public class LoginUI extends javax.swing.JFrame {
 
@@ -49,21 +50,11 @@ public class LoginUI extends javax.swing.JFrame {
                 jButton1MouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         jButton2.setText("Submit");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
-            }
-        });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
             }
         });
 
@@ -137,12 +128,16 @@ public class LoginUI extends javax.swing.JFrame {
         String password = new String(jPasswordField1.getPassword());
         Login Controller = new Login();
         boolean show = Controller.verifyLogin(username, password);
+        //If show is true, show main menu. Else, popup error message.
         if(show){
             MainMenuUI temp= new MainMenuUI(username);
             temp.setVisible(true);
             dispose();
         }
-        //TODO: If show is true, show main menu. Else, show error message.
+        else
+        {
+            JOptionPane.showMessageDialog(null,"Something went wrong.","Error",0,null);
+        }
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
@@ -152,17 +147,8 @@ public class LoginUI extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void guestBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guestBtnMouseClicked
-        // Register button
+        // Guest button
         guestMenu reg = new guestMenu();
         reg.setVisible(true);
         dispose();

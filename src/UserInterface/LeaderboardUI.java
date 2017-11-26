@@ -93,6 +93,7 @@ public class LeaderboardUI extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        //Back Button
         if(logged){
             MainMenuUI temp = new MainMenuUI(username);
             temp.setVisible(true);

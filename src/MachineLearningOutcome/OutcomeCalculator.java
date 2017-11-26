@@ -16,15 +16,15 @@ public class OutcomeCalculator {
         
     }
 
-    public OutcomeCalculator(String name, int wins, int losses) {
+    public OutcomeCalculator(String name, int wins, int losses) {//Team calculator
         OddsCalculator cal=new OddsCalculator(name,OddsMaker(wins,losses));
     }
 
-    public OutcomeCalculator(String name, int kills, int deaths, String Tname) {
+    public OutcomeCalculator(String name, int kills, int deaths, String Tname) {//Player calculator
         double outcomeS=kills/kills+deaths;
         OddsCalculator cal=new OddsCalculator(name,outcomeS,Tname);
     }
-    public double OddsMaker(int wins, int losses){
+    public double OddsMaker(int wins, int losses){//Gives the odds based on the win/loss ratio.
         double outcomeS;
          int wl=wins+losses;
          System.out.println(wl);

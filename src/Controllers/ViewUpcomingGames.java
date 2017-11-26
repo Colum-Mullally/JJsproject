@@ -21,7 +21,7 @@ import javax.swing.JList;
  */
 public class ViewUpcomingGames {
     private ArrayList <String[]> list;
-    public ViewUpcomingGames(){
+    public ViewUpcomingGames(){//Gets the upcoming games and puts them in a list.
      
        
              list = new ArrayList<String[]>();
@@ -45,7 +45,7 @@ public class ViewUpcomingGames {
             Logger.getLogger(ViewUpcomingGames.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public ArrayList<String[]> getFixture(){
+    public ArrayList<String[]> getFixture(){//Returns the list
         return list;
     }
 }

@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author Colum
  */
-public class ReadTeamStats {
+public class ReadTeamStats {//Takes a string and gets the team's stats out of it.
     
     public void parse(String lineFromFile) {
        String[] archive;

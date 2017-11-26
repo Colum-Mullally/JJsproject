@@ -13,7 +13,7 @@ import DatabaseController.AccountDB;
  * @author Colum
  */
 
-public class ViewStats {
+public class ViewStats {//Gets the stats for a given user.
     String Stats;
     public ViewStats(String username) {
         AccountDB temp = new AccountDB();

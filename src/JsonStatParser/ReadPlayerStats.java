@@ -11,7 +11,7 @@ import MachineLearningOutcome.OutcomeCalculator;
  *
  * @author Colum
  */
-public class ReadPlayerStats {
+public class ReadPlayerStats {//Takes a string and gets the player's stats out of it.
 
     public void parse(String lineFromFile) {
        String[] archive;
