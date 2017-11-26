@@ -27,16 +27,13 @@ public class DBConnector {
       return instance;
   }
     
-    public void DBConnector(){
+    public DBConnector(){
         connectDataBase();
         instance = this;
-        
     }
     
     public void connectDataBase(){//Connects this instance to the actual database
         try{
-                  
-            
         // This will load the MySQL driver, each DB has its own driver
         Class.forName("com.mysql.jdbc.Driver");
         // Setup the connection with the DB

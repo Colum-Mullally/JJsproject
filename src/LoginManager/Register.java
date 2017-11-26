@@ -13,7 +13,7 @@ public class Register {
     
     private final UserDB account;
     
-    public Register()
+    public Register()//Default constructor
     {
         account = new UserDB();
     }

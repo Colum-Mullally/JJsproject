@@ -12,7 +12,7 @@ import DatabaseController.AccountDB;
 public class Login {
     private AccountDB accountChecker;
     
-    public Login()
+    public Login()//Default constructor
     {
         accountChecker = new AccountDB();
     }

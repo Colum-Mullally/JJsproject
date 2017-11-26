@@ -2,11 +2,6 @@
 package DatabaseController;
 
 import AccountManager.Account;
-
-/**
- *
- * @author Jack
- */
 public class AccountDB {
         
     private DataMapper dm = new DataMapper();
