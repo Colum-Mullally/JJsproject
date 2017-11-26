@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * The go-between for the UI and the account database class when the user is registering a new account
  */
 package LoginManager;
 
@@ -13,15 +11,15 @@ import DatabaseController.UserDB;
  */
 public class Register {
     
-    //private String username, password, email;
     private final UserDB account;
     
-    public Register()
+    public Register()//Default constructor
     {
         account = new UserDB();
     }
     
-    public boolean registerUser(String nUser, String nPass, String nMail)
+    public boolean registerUser(String nUser, String nPass, String nMail)//Takes a username, password, and email and sends them along to the database
+            //to add a new user. Returns true or false based on whether anything went wrong or not.
     {
         boolean out = account.add(nUser, nPass, nMail);
         return out;

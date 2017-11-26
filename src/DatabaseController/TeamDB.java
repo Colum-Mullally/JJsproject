@@ -25,7 +25,7 @@ public class TeamDB {
         return out;
     }
     
-    public String[][] showAllTeams()
+    public String[][] showAllTeams()//Gets all teams as a two-dimensional array of strings.
     {
         
         try {
@@ -38,7 +38,7 @@ public class TeamDB {
         return null;
     }
     
-    public void update(String name, double odds)
+    public void update(String name, double odds)//Tells the database to add a new team with the given details.
     {
         ds.update(name,odds);
     }

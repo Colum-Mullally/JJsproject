@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * The go-between for the UI and the account database class when the user is logging in
+ * 
+ * 
  */
 package LoginManager;
 
@@ -9,19 +9,18 @@ import DatabaseController.AccountDB;
 
 /**
  *
- * @author Colum
+ * @author Jack
  */
 public class Login {
-    //private String username, password;
-    //private CharacterChecker cChecker;What is this and what is it for?
     private AccountDB accountChecker;
     
-    public Login()
+    public Login()//Default constructor
     {
         accountChecker = new AccountDB();
     }
     
-    public boolean verifyLogin(String nName, String nPass)
+    public boolean verifyLogin(String nName, String nPass)//Takes a username and password and sends them along to the database to check if they're valid.
+            //Returns true or false based on that.
     {
         return accountChecker.check(nName, nPass);
     }

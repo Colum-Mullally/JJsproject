@@ -17,7 +17,7 @@ public class LeaderboardDB {
         ds = dm.getParserType();
     }
     
-    public String[][] getLeaderBoard()
+    public String[][] getLeaderBoard()//Gets the current leaderboard as a two-dimensional array of strings.
     {
         String[][] out = ds.getLeaderboard();
         return out;
