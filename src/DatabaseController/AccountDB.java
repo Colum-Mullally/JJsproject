@@ -27,4 +27,9 @@ public class AccountDB {
     public Account getAccount(String id){
         return ds.getAccount(id);
     }
+     public String getStats(String id){
+        String output= ds.getStats(id);
+        Account temp= getAccount(id);
+        return (temp.Uname()+"Supported "+output+"times and now has a balance of"+temp.balance()+"XP");
+    }
 }

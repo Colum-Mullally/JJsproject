@@ -380,6 +380,12 @@ public class DBParser implements DataSuper{
             preparedStatement.setDouble(4, odds);
             
             DBConnector.getInstance().execute(preparedStatement);
+            preparedStatement = DBConnector.getInstance().getConnect().prepareStatement("insert into "+dbName+".placedbets (uname,amount ,odds) values ( ?, ?, ?)");
+            
+            preparedStatement.setString(1, user.Uname());
+            preparedStatement.setDouble(2, amount);
+            preparedStatement.setDouble(3, odds);
+            DBConnector.getInstance().execute(preparedStatement);
         } catch (SQLException ex) {
             Logger.getLogger(DBParser.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
@@ -392,5 +398,20 @@ public class DBParser implements DataSuper{
                 Logger.getLogger(DBParser.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+
+    @Override
+    public String getStats(String id) {
+        try {
+            ResultSet rs = DBConnector.getInstance().execute("Select count(uname) AS count from "+dbName+".placedbets where uname = '"+id+"'&& amount>0;");
+            if(rs.next()){
+                int count = rs.getInt("count");
+                System.out.print(count);
+                return (""+count);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBParser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return ("unexpected error please try again later");
     }
 }
